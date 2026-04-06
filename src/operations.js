@@ -1,12 +1,28 @@
 // operations.js
 import { eq, like, or, and, isNull, inArray, sql } from 'drizzle-orm';
-import { users, persona, empleo, cargo, unidad, banco, asistencia, sqlite } from './database.js';
+import { persona, empleo, cargo, unidad, banco, asistencia, sqlite } from './database.js';
 import jwt from 'jsonwebtoken';
 
 const SECRET = process.env.JWT_SECRET || 'dev-secret';
 
 function requireCaller(caller) {
     if (!caller) throw new Error('not authenticated');
+}
+
+function buildUnitPathById(unidadId, unidadById) {
+    if (!unidadId) return null;
+
+    const parts = [];
+    const seen = new Set();
+    let current = unidadById.get(unidadId);
+
+    while (current && !seen.has(current.id)) {
+        seen.add(current.id);
+        parts.push(current.nombre);
+        current = unidadById.get(current.parent_id);
+    }
+
+    return parts.reverse().join(' > ');
 }
 
 export const operations = {
@@ -105,7 +121,9 @@ export const operations = {
         if (!p) throw new Error('persona not found');
         const empleos = await db.select({
             id: empleo.id,
-            cargo: cargo.nombre,
+            rol_base: cargo.rol_base,
+            especialidad: cargo.especialidad,
+            unidad_id: empleo.unidad_id,
             unidad: unidad.nombre,
             banco: banco.nombre,
             tipo_contrato: empleo.tipo_contrato,
@@ -113,12 +131,20 @@ export const operations = {
             fecha_fin: empleo.fecha_fin,
             numero_cuenta: empleo.numero_cuenta,
             alterno: empleo.alterno,
+            perfil_horario: empleo.perfil_horario,
+            estructura_costos: empleo.estructura_costos,
         }).from(empleo)
             .leftJoin(cargo, eq(empleo.cargo_id, cargo.id))
             .leftJoin(unidad, eq(empleo.unidad_id, unidad.id))
             .leftJoin(banco, eq(empleo.banco_id, banco.id))
             .where(eq(empleo.persona_id, input.id));
-        return { ...p, empleos };
+        const unidades = await db.select().from(unidad);
+        const unidadById = new Map(unidades.map((u) => [u.id, u]));
+        const empleosConRuta = empleos.map((row) => ({
+            ...row,
+            unidad_path: buildUnitPathById(row.unidad_id, unidadById),
+        }));
+        return { ...p, empleos: empleosConRuta };
     },
     async createPersona({ input, caller, db }) {
         requireCaller(caller);
@@ -207,21 +233,5 @@ export const operations = {
         if (!input.persona_id) throw new Error('persona_id is required');
         return db.select().from(asistencia)
             .where(eq(asistencia.persona_id, input.persona_id));
-    },
-    // ─── Users ───────────────────────────────────────────────────────────────
-    async listUsers({ caller, db }) {
-        requireCaller(caller);
-        return db.select().from(users);
-    },
-    async createUser({ input, caller, db }) {
-        requireCaller(caller);
-        const [row] = await db.insert(users).values(input).returning();
-        return row;
-    },
-    async updateUser({ input, caller, db }) {
-        requireCaller(caller);
-        const { id, ...data } = input;
-        const [row] = await db.update(users).set(data).where(eq(users.id, id)).returning();
-        return row;
     },
 };

@@ -29,10 +29,9 @@ export const unidad = sqliteTable('unidad', {
 // ─── Cargo ───────────────────────────────────────────────────────────────────
 export const cargo = sqliteTable('cargo', {
   id: text('id').primaryKey(),
-  nombre: text('nombre').notNull().unique(),
+  rol_base: text('rol_base'),
+  especialidad: text('especialidad'),
   codigo_iess: text('codigo_iess'),
-  perfil_horario: text('perfil_horario'),
-  estructura_costos: text('estructura_costos'),
   created_at: text('created_at').default(sql`(datetime('now'))`),
   updated_at: text('updated_at').default(sql`(datetime('now'))`),
 });
@@ -75,6 +74,8 @@ export const empleo = sqliteTable('empleo', {
   fecha_fin: text('fecha_fin'),
   numero_cuenta: text('numero_cuenta'),
   alterno: integer('alterno'),
+  perfil_horario: text('perfil_horario'),
+  estructura_costos: text('estructura_costos'),
   created_at: text('created_at').default(sql`(datetime('now'))`),
   updated_at: text('updated_at').default(sql`(datetime('now'))`),
 });
@@ -87,14 +88,3 @@ export const asistencia = sqliteTable('asistencia', {
   salida: text('salida'),
 });
 
-// ─── Users ───────────────────────────────────────────────────────────────────
-export const users = sqliteTable('users', {
-  id: text('id').notNull().primaryKey(),
-  usuario: text('usuario').notNull().unique(),
-  contrasena: text('contrasena').notNull(),
-  role: text('role').notNull(),
-  persona_id: integer('persona_id').references(() => persona.codigo),
-  name: text('name').notNull(),
-  created_at: text('created_at').notNull().default(sql`(datetime('now'))`),
-  updated_at: text('updated_at').notNull().default(sql`(datetime('now'))`),
-});

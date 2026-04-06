@@ -3,9 +3,6 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { pathToFileURL } from 'url';
 import { resolve } from 'path';
-import { execSync } from 'child_process';
-
-execSync('npx drizzle-kit push', { stdio: 'inherit' });
 
 const app = express();
 app.use(express.json());
