@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D&eacute;cimos — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #000; line-height: 1.45; max-width: 750px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 16pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 10pt; color: #444; }
+
+  .doc-title { text-align: center; font-size: 13pt; font-weight: 700; text-transform: uppercase; margin: 14px 0 12px; }
+
+  p { text-align: justify; margin-bottom: 10px; }
+  .right { text-align: right; margin-bottom: 8px; }
+  .dest { margin-bottom: 16px; }
+
+  .section-title { font-size: 11pt; font-weight: 700; text-transform: uppercase; margin: 16px 0 8px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+
+  .radio-group { margin-bottom: 8px; }
+  .radio-option { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 11pt; cursor: pointer; }
+  .radio-option input[type="radio"] { width: 18px; height: 18px; accent-color: #0d3b8e; cursor: pointer; }
+  .note { font-size: 9.5pt; color: #555; margin-left: 26px; margin-top: -4px; margin-bottom: 8px; }
+
+  .sig-section { margin-top: 24px; text-align: center; }
+  .sig-section label { display: block; font-size: 10pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 4px; right: 6px; font-size: 9pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 16px; }
+  .submit-btn { font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 10px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print {
+    .sig-section, .submit-section { display: none; }
+    .print-sig { display: block !important; text-align: center; margin-top: 60px; }
+    .print-sig .line { border-top: 1px solid #000; width: 260px; margin: 0 auto 2px; }
+    .print-sig .sig-name { font-size: 9pt; font-weight: 700; }
+    .print-sig .sig-id { font-size: 8.5pt; color: #333; }
+  }
+  .print-sig { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Talento Humano</div>
+</div>
+
+<div class="right"><span class="fill">{{ciudad}}</span>, <span class="fill">{{dia}}</span> de <span class="fill">{{mes}}</span> de <span class="fill">{{ano}}</span></div>
+
+<div class="dest">
+  <strong>Se&ntilde;ores</strong><br>
+  Talento Humano &mdash; CANANVALLE S.A.<br>
+  Presente.-
+</div>
+
+<div class="doc-title">Solicitud Voluntaria de Forma de Pago de D&eacute;cimos</div>
+
+<p>Yo, <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula de identidad N&deg; <strong><span class="fill">{{cedula}}</span></strong>, de manera libre y voluntaria solicito que el pago de mis d&eacute;cimos se realice de la siguiente forma:</p>
+
+<div class="section-title">D&eacute;cimo Tercer Sueldo</div>
+<div class="radio-group">
+  <label class="radio-option"><input type="radio" name="d13" value="acumulado"> Acumulaci&oacute;n anual (pago hasta el 24 de diciembre)</label>
+  <label class="radio-option"><input type="radio" name="d13" value="mensual" checked> Pago mensual (prorrateado en cada rol de pago)</label>
+</div>
+
+<div class="section-title">D&eacute;cimo Cuarto Sueldo</div>
+<div class="radio-group">
+  <label class="radio-option"><input type="radio" name="d14" value="acumulado"> Acumulaci&oacute;n anual (pago hasta el 15 de agosto)</label>
+  <label class="radio-option"><input type="radio" name="d14" value="mensual" checked> Pago mensual (prorrateado en cada rol de pago)</label>
+</div>
+
+<p style="margin-top: 14px;">Para constancia de lo solicitado, firmo el presente documento.</p>
+
+<div class="print-sig">
+  <div class="line"></div>
+  <div class="sig-name" id="print-name"></div>
+  <div class="sig-id" id="print-ci"></div>
+</div>
+
+<div class="sig-section">
+  <label>Firma del Trabajador/a</label>
+  <div class="sig-canvas-wrap">
+    <canvas id="sig" width="400" height="150"></canvas>
+    <span class="sig-clear" onclick="clearCanvas('sig')">borrar</span>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('sig');
+
+  window.clearCanvas = function(id) {
+    const c = document.getElementById(id);
+    c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  };
+
+  function isBlank(canvas) {
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    return canvas.toDataURL() === blank.toDataURL();
+  }
+
+  document.getElementById('print-name').textContent = (PREFILL.nombres || '') + ' ' + (PREFILL.apellidos || '');
+  document.getElementById('print-ci').textContent = 'C.I. ' + (PREFILL.cedula || '');
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sigCanvas = document.getElementById('sig');
+    if (isBlank(sigCanvas)) {
+      msg.textContent = 'La firma es requerida.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const d13 = document.querySelector('input[name="d13"]:checked')?.value;
+    const d14 = document.querySelector('input[name="d14"]:checked')?.value;
+    if (!d13 || !d14) {
+      msg.textContent = 'Seleccione una opci\u00f3n para cada d\u00e9cimo.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'decimos',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          ciudad: PREFILL.ciudad,
+          fecha: PREFILL.fecha,
+          entrevista_id: PREFILL.entrevista_id || null,
+          decimo_tercero: d13,
+          decimo_cuarto: d14,
+          firma: sigCanvas.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Solicitud enviada correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

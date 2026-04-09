@@ -1,0 +1,96 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 15mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 9.5pt; color: #000; line-height: 1.45; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 14pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  .doc-title { text-align: center; font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 10px 0 8px; }
+
+  p { text-align: justify; margin-bottom: 8px; }
+
+  .section-title { font-size: 9.5pt; font-weight: 700; text-transform: uppercase; margin: 12px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  th { font-size: 8pt; font-weight: 700; text-transform: uppercase; padding: 4px 6px; border-bottom: 1.5px solid #000; text-align: left; }
+  td { padding: 4px 6px; font-size: 9pt; vertical-align: middle; border-bottom: 0.5px solid #ccc; }
+  td:last-child { width: 140px; text-align: center; }
+
+  .compromisos { margin: 10px 0; }
+  .compromisos p { margin-bottom: 6px; font-size: 9pt; }
+  .compromisos strong { font-size: 8pt; text-transform: uppercase; color: #333; }
+
+  .sig-block { display: flex; gap: 40px; margin-top: 50px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 240px; margin: 0 auto 2px; }
+  .sig-block .sig-name { font-size: 9pt; font-weight: 700; }
+  .sig-block .sig-id { font-size: 8.5pt; color: #333; }
+  .sig-block .sig-role { font-size: 8pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-06</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Acta de Entrega y Socializaci&oacute;n de Documentaci&oacute;n</div>
+
+<p>En la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>, yo <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula N&deg; <strong><span class="fill">{{cedula}}</span></strong>, declaro que he recibido y se me ha socializado la siguiente documentaci&oacute;n por parte de <strong>CANANVALLE S.A.</strong>:</p>
+
+<div class="section-title">Documentos Entregados y Socializados</div>
+
+<table>
+  <thead>
+    <tr><th>N&deg;</th><th>Documento</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Reglamento de Salud y Seguridad del Trabajo</td><td>Entregado y socializado</td></tr>
+    <tr><td>2</td><td>Reglamento Interno de Trabajo</td><td>Entregado y socializado</td></tr>
+    <tr><td>3</td><td>Programa de Prevenci&oacute;n de Riesgos Psicosociales</td><td>Socializado</td></tr>
+    <tr><td>4</td><td>Procedimiento de Remediaci&oacute;n por Violencia, Acoso y Discriminaci&oacute;n</td><td>Socializado</td></tr>
+    <tr><td>5</td><td>Socializaci&oacute;n de Riesgos Laborales</td><td>Socializado</td></tr>
+    <tr><td>6</td><td>C&oacute;digo de &Eacute;tica</td><td>Entregado y socializado</td></tr>
+    <tr><td>7</td><td>Tr&iacute;ptico de Certificaciones</td><td>Entregado y socializado</td></tr>
+    <tr><td>8</td><td>Programa Preventivo de Corrupci&oacute;n y Soborno</td><td>Socializado</td></tr>
+    <tr><td>9</td><td>Programa de Prevenci&oacute;n de Delitos del Comercio Internacional</td><td>Socializado</td></tr>
+  </tbody>
+</table>
+
+<div class="section-title">Compromisos del Trabajador</div>
+
+<div class="compromisos">
+  <p>Confirmo haber recibido en formato digital las pol&iacute;ticas, reglamentos, C&oacute;digo de &Eacute;tica, programas preventivos y procedimientos detallados anteriormente.</p>
+  <p>Declaro haber recibido la socializaci&oacute;n del contenido en palabras sencillas y entendibles, haber revisado su contenido y aceptado las responsabilidades que se derivan de su aplicaci&oacute;n.</p>
+  <p>Me comprometo a leer y aplicar todas las actualizaciones del C&oacute;digo de &Eacute;tica, Reglamentos y dem&aacute;s Programas emitidos por <strong>CANANVALLE S.A.</strong></p>
+</div>
+
+<div class="sig-block">
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{nombres}} {{apellidos}}</div>
+    <div class="sig-id">C.I. {{cedula}}</div>
+    <div class="sig-role">Trabajador/a</div>
+  </div>
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{talento_humano}}</div>
+    <div class="sig-role">Talento Humano — CANANVALLE S.A.</div>
+  </div>
+</div>
+
+</body>
+</html>

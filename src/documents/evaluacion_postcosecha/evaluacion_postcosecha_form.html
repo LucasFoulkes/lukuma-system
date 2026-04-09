@@ -1,0 +1,250 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evaluaci&oacute;n Postcosecha — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; color: #000; line-height: 1.4; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+  .header { text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 15pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+  .doc-title { text-align: center; font-size: 12pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 8px; }
+  .meta { display: flex; gap: 10px; margin-bottom: 8px; border: 1px solid #ccc; padding: 6px 8px; font-size: 9.5pt; flex-wrap: wrap; }
+  .meta .cell { flex: 1; min-width: 140px; }
+  .meta .label { font-weight: 700; color: #555; font-size: 7pt; text-transform: uppercase; }
+  .meta input { border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 9.5pt; color: #0d3b8e; width: 100%; outline: none; background: none; padding: 1px 2px; }
+  .meta input::placeholder { color: #9bb3d9; font-style: italic; }
+  .group-title { font-size: 10.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 3px 6px; margin: 12px 0 6px; border-left: 3px solid #0d3b8e; }
+  .question { margin-bottom: 12px; padding: 8px; border: 1px solid #eee; border-radius: 4px; }
+  .q-title { font-weight: 700; font-size: 10.5pt; margin-bottom: 6px; }
+  .q-open { width: 100%; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; outline: none; background: none; padding: 4px 2px; }
+  .q-open::placeholder { color: #9bb3d9; font-style: italic; }
+  .check-option { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-size: 10pt; cursor: pointer; }
+  .check-option input { width: 16px; height: 16px; accent-color: #0d3b8e; flex-shrink: 0; }
+  .radio-option { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-size: 10pt; cursor: pointer; }
+  .radio-option input { width: 16px; height: 16px; accent-color: #0d3b8e; flex-shrink: 0; }
+  .activities { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 8px; }
+  .obs-section { margin: 10px 0; }
+  .obs-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .obs-row label { font-weight: 600; font-size: 9pt; min-width: 150px; }
+  .obs-row input { flex: 1; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; padding: 2px 4px; outline: none; background: none; }
+  .obs-row input::placeholder { color: #9bb3d9; font-style: italic; }
+  .result-section { margin: 10px 0; font-size: 11pt; }
+  .result-section label { cursor: pointer; margin-right: 20px; }
+  .result-section input { width: 18px; height: 18px; accent-color: #0d3b8e; vertical-align: middle; }
+  .sig-section { margin-top: 16px; }
+  .sig-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 9pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 3px; right: 5px; font-size: 8pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+  .submit-section { text-align: center; margin-top: 14px; }
+  .submit-btn { font-family: 'Times New Roman', serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 8px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+  @media print { .sig-section, .submit-section { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-12</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Evaluaci&oacute;n por Competencias &mdash; Postcosecha</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Nombre</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">Cargo</span><br>{{f_cargo}}</div>
+</div>
+<div class="meta">
+  <div class="cell"><span class="label">Experiencia en el cargo</span><br><input id="f_experiencia" placeholder="SI / NO — tiempo"></div>
+</div>
+
+<div class="group-title">Clasificaci&oacute;n</div>
+
+<div class="question">
+  <div class="q-title">1. &iquest;Qu&eacute; enfermedades conoce?</div>
+  <label class="check-option"><input type="checkbox" name="q1" value="botrytis"> Botrytis</label>
+  <label class="check-option"><input type="checkbox" name="q1" value="oidio"> O&iacute;dio</label>
+  <label class="check-option"><input type="checkbox" name="q1" value="velloso"> Velloso</label>
+</div>
+<div class="question">
+  <div class="q-title">2. &iquest;Qu&eacute; plagas conoce?</div>
+  <label class="check-option"><input type="checkbox" name="q2" value="trips"> Trips</label>
+  <label class="check-option"><input type="checkbox" name="q2" value="acaro"> &Aacute;caro</label>
+  <label class="check-option"><input type="checkbox" name="q2" value="pulgon"> Pulg&oacute;n</label>
+</div>
+<div class="question">
+  <div class="q-title">3. &iquest;Qu&eacute; puntos de corte conoce?</div>
+  <label class="check-option"><input type="checkbox" name="q3" value="ruso"> Ruso</label>
+  <label class="check-option"><input type="checkbox" name="q3" value="europeo"> Europeo</label>
+  <label class="check-option"><input type="checkbox" name="q3" value="americano"> Americano</label>
+</div>
+<div class="question">
+  <div class="q-title">4. &iquest;Sabe clasificar en forma de lira o &aacute;rbol?</div>
+  <label class="check-option"><input type="checkbox" name="q4" value="lira"> Lira</label>
+  <label class="check-option"><input type="checkbox" name="q4" value="arbol"> &Aacute;rbol</label>
+</div>
+<div class="question">
+  <div class="q-title">5. &iquest;Cu&aacute;ntos tallos por hora clasifica?</div>
+  <input class="q-open" id="r5" placeholder="N&uacute;mero...">
+</div>
+
+<div class="group-title">Embonche</div>
+
+<div class="question">
+  <div class="q-title">6. &iquest;Qu&eacute; tipo de ramos ha realizado?</div>
+  <label class="check-option"><input type="checkbox" name="q6" value="cuadrado"> Cuadrado</label>
+  <label class="check-option"><input type="checkbox" name="q6" value="bouquets"> Bouquets</label>
+  <label class="check-option"><input type="checkbox" name="q6" value="otros"> Otros</label>
+</div>
+<div class="question">
+  <div class="q-title">7. &iquest;En el armado del bonche se puede mezclar tama&ntilde;o de bot&oacute;n, y por qu&eacute;?</div>
+  <input class="q-open" id="r7" placeholder="Respuesta...">
+</div>
+
+<div class="group-title">Otras Actividades del &Aacute;rea</div>
+<div class="activities">
+  <label class="check-option"><input type="checkbox" name="actividades" value="enligar"> Enligar</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="capuchon"> Poner capuch&oacute;n</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="cortar"> Cortar</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="cinta"> Poner cinta</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="digitar"> Digitar</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="patinar"> Patinar</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="tinturado"> Tinturado</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="recepcion_mallas"> Recepci&oacute;n mallas</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="datos_nacional"> Datos nacional</label>
+  <label class="check-option"><input type="checkbox" name="actividades" value="ninguna"> Ninguna</label>
+</div>
+
+<div class="group-title">Empaque</div>
+<div class="question">
+  <div class="q-title">Actividades realizadas en empaque</div>
+  <input class="q-open" id="r_empaque" placeholder="Describa su experiencia en empaque...">
+</div>
+
+<div class="group-title">Resultado y Observaciones</div>
+<div class="obs-section">
+  <div class="obs-row"><label>Novedades TTHH</label><input id="f_novedades" placeholder="Novedades..."></div>
+  <div class="obs-row"><label>Obs. Jefe/Supervisor</label><input id="f_obs_jefe" placeholder="Observaciones..."></div>
+</div>
+<div class="result-section">
+  <strong>Resultado:</strong>
+  <label><input type="radio" name="resultado" value="aprobado"> Aprobado</label>
+  <label><input type="radio" name="resultado" value="no_aprobado"> No Aprobado</label>
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col"><label>Firma TTHH</label><div class="sig-canvas-wrap"><canvas id="sig1" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span></div></div>
+    <div class="sig-col"><label>Firma Evaluado/a</label><div class="sig-canvas-wrap"><canvas id="sig2" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span></div></div>
+    <div class="sig-col"><label>Firma Jefe/Supervisor</label><div class="sig-canvas-wrap"><canvas id="sig3" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig3')">borrar</span></div></div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  ['sig1','sig2','sig3'].forEach(setupCanvas);
+  window.clearCanvas = function(id) { const c = document.getElementById(id); c.getContext('2d').clearRect(0, 0, c.width, c.height); };
+  function isBlank(c) { const b = document.createElement('canvas'); b.width = c.width; b.height = c.height; return c.toDataURL() === b.toDataURL(); }
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const s1 = document.getElementById('sig1'), s2 = document.getElementById('sig2'), s3 = document.getElementById('sig3');
+    if (isBlank(s1) || isBlank(s2) || isBlank(s3)) {
+      msg.textContent = 'Las tres firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+    const resultado = document.querySelector('input[name="resultado"]:checked')?.value;
+    if (!resultado) { msg.textContent = 'Seleccione el resultado.'; msg.className = 'msg err'; btn.disabled = false; return; }
+
+    const checked = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c => c.value);
+    const respuestas = {
+      q1_enfermedades: checked('q1'),
+      q2_plagas: checked('q2'),
+      q3_puntos_corte: checked('q3'),
+      q4_clasificacion: checked('q4'),
+      r5_tallos_hora: document.getElementById('r5').value,
+      q6_ramos: checked('q6'),
+      r7_mezcla_boton: document.getElementById('r7').value,
+      actividades: checked('actividades'),
+      r_empaque: document.getElementById('r_empaque').value,
+    };
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'evaluacion_postcosecha',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          fecha: PREFILL.fecha,
+          cargo: document.getElementById('f_cargo')?.value || PREFILL.cargo || '',
+          experiencia: document.getElementById('f_experiencia').value,
+          respuestas: respuestas,
+          novedades_tthh: document.getElementById('f_novedades').value,
+          observacion_jefe: document.getElementById('f_obs_jefe').value,
+          resultado: resultado,
+          evaluacion_competencias_id: PREFILL.evaluacion_competencias_id || null,
+          firma_tthh: s1.toDataURL('image/png'),
+          firma_evaluado: s2.toDataURL('image/png'),
+          firma_evaluador_jefe: s3.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Evaluaci\u00f3n enviada correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

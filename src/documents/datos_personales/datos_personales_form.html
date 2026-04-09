@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datos Personales — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #000; line-height: 1.45; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 16pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 10pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 9pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  .doc-title { text-align: center; font-size: 13pt; font-weight: 700; text-transform: uppercase; margin: 14px 0 12px; }
+
+  .group-title { font-size: 11pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 4px 8px; margin: 14px 0 6px; border-left: 3px solid #0d3b8e; }
+
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; margin-bottom: 8px; }
+  .field-row { display: flex; align-items: baseline; gap: 6px; }
+  .field-row label { font-weight: 600; font-size: 9.5pt; color: #333; white-space: nowrap; min-width: 120px; }
+  .field-row .val { color: #0d3b8e; font-size: 10pt; }
+  .field-row input { flex: 1; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; padding: 2px 4px; outline: none; background: none; min-width: 0; }
+  .field-row input::placeholder { color: #9bb3d9; font-style: italic; }
+  .field-row.full { grid-column: 1 / -1; }
+
+  .canvas-section { margin: 10px 0; }
+  .canvas-section h4 { font-size: 9.5pt; font-weight: 700; margin-bottom: 4px; }
+  .canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  .canvas-wrap canvas { display: block; cursor: crosshair; }
+  .canvas-clear { position: absolute; top: 4px; right: 6px; font-size: 9pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .canvas-clear:hover { color: #333; }
+
+  .sig-section { margin-top: 20px; text-align: center; }
+  .sig-section label { display: block; font-size: 10pt; font-weight: 700; margin-bottom: 4px; }
+
+  .submit-section { text-align: center; margin-top: 16px; }
+  .submit-btn { font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 10px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print {
+    input { border-bottom: none !important; }
+    .sig-section, .submit-section { display: none; }
+    .print-sig { display: block !important; text-align: center; margin-top: 50px; }
+    .print-sig .line { border-top: 1px solid #000; width: 250px; margin: 0 auto 2px; }
+    .print-sig .sig-name { font-size: 9pt; font-weight: 700; }
+    .print-sig .sig-role { font-size: 8pt; color: #555; }
+  }
+  .print-sig { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-05</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Datos Personales</div>
+
+<div class="group-title">Identificaci&oacute;n</div>
+<div class="fields">
+  <div class="field-row">{{f_fecha_ingreso}}</div>
+  <div class="field-row">{{f_cedula}}</div>
+  <div class="field-row">{{f_apellidos}}</div>
+  <div class="field-row">{{f_nombres}}</div>
+  <div class="field-row">{{f_area_ingreso}}</div>
+</div>
+
+<div class="group-title">Informaci&oacute;n Bancaria</div>
+<div class="fields">
+  <div class="field-row">{{f_banco}}</div>
+  <div class="field-row">{{f_tipo_cuenta}}</div>
+  <div class="field-row">{{f_numero_cuenta}}</div>
+</div>
+
+<div class="group-title">Dotaci&oacute;n de Uniformes y Equipos</div>
+<div class="fields">
+  <div class="field-row">{{f_talla_mandil}}</div>
+  <div class="field-row">{{f_talla_camiseta}}</div>
+  <div class="field-row">{{f_talla_botas}}</div>
+  <div class="field-row">{{f_talla_zapatos}}</div>
+</div>
+
+<div class="group-title">Ruta de Transporte</div>
+<div class="fields">
+  <div class="field-row">{{f_ruta}}</div>
+  <div class="field-row">{{f_parada}}</div>
+</div>
+
+<div class="group-title">Ubicaci&oacute;n de Vivienda</div>
+<div class="canvas-section">
+  <h4>Croquis de ubicaci&oacute;n del domicilio</h4>
+  <div class="canvas-wrap">
+    <canvas id="croquis" width="700" height="200"></canvas>
+    <span class="canvas-clear" onclick="clearCanvas('croquis')">borrar</span>
+  </div>
+</div>
+
+<div class="print-sig">
+  <div class="line"></div>
+  <div class="sig-name" id="print-name"></div>
+  <div class="sig-role">Firma del Trabajador</div>
+</div>
+
+<div class="sig-section">
+  <label>Firma del Trabajador</label>
+  <div class="canvas-wrap">
+    <canvas id="sig" width="400" height="150"></canvas>
+    <span class="canvas-clear" onclick="clearCanvas('sig')">borrar</span>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('croquis');
+  setupCanvas('sig');
+
+  window.clearCanvas = function(id) {
+    const c = document.getElementById(id);
+    c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  };
+
+  function isBlank(canvas) {
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    return canvas.toDataURL() === blank.toDataURL();
+  }
+
+  function val(id) { const el = document.getElementById('f_' + id); return el ? String(el.value || el.textContent || '').trim() : String(PREFILL[id] || '').trim(); }
+
+  document.getElementById('print-name').textContent = (PREFILL.nombres || '') + ' ' + (PREFILL.apellidos || '');
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sigCanvas = document.getElementById('sig');
+    if (isBlank(sigCanvas)) {
+      msg.textContent = 'La firma es requerida.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const fields = ['fecha_ingreso','cedula','apellidos','nombres','area_ingreso',
+      'banco','tipo_cuenta','numero_cuenta',
+      'talla_mandil','talla_camiseta','talla_botas','talla_zapatos',
+      'ruta','parada'];
+
+    const data = {};
+    for (const f of fields) data[f] = val(f);
+
+    const croquisCanvas = document.getElementById('croquis');
+    const croquis = isBlank(croquisCanvas) ? null : croquisCanvas.toDataURL('image/png');
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'datos_personales',
+          ...data,
+          fecha: PREFILL.fecha,
+          entrevista_id: PREFILL.entrevista_id || null,
+          croquis: croquis,
+          firma: sigCanvas.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Documento enviado correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evaluaci&oacute;n Competencias — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; color: #000; line-height: 1.4; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 15pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+
+  .doc-title { text-align: center; font-size: 12pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 8px; }
+
+  .meta { display: flex; gap: 10px; margin-bottom: 8px; border: 1px solid #ccc; padding: 6px 8px; font-size: 9.5pt; flex-wrap: wrap; }
+  .meta .cell { flex: 1; min-width: 140px; }
+  .meta .label { font-weight: 700; color: #555; font-size: 7pt; text-transform: uppercase; }
+  .meta .val { color: #0d3b8e; }
+  .meta input, .meta textarea { border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 9.5pt; color: #0d3b8e; width: 100%; outline: none; background: none; padding: 1px 2px; resize: none; }
+  .meta input::placeholder, .meta textarea::placeholder { color: #9bb3d9; font-style: italic; }
+
+  .group-title { font-size: 10.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 3px 6px; margin: 12px 0 6px; border-left: 3px solid #0d3b8e; }
+
+  .question { margin-bottom: 12px; padding: 8px; border: 1px solid #eee; border-radius: 4px; }
+  .q-title { font-weight: 700; font-size: 10.5pt; margin-bottom: 6px; }
+  .q-open { width: 100%; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; outline: none; background: none; padding: 4px 2px; }
+  .q-open::placeholder { color: #9bb3d9; font-style: italic; }
+  .radio-option { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; font-size: 10pt; cursor: pointer; }
+  .radio-option input { width: 16px; height: 16px; accent-color: #0d3b8e; margin-top: 2px; flex-shrink: 0; }
+  .check-option { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; font-size: 10pt; cursor: pointer; }
+  .check-option input { width: 16px; height: 16px; accent-color: #0d3b8e; margin-top: 2px; flex-shrink: 0; }
+
+  .obs-section { margin: 10px 0; }
+  .obs-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .obs-row label { font-weight: 600; font-size: 9pt; min-width: 150px; }
+  .obs-row input { flex: 1; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; padding: 2px 4px; outline: none; background: none; }
+  .obs-row input::placeholder { color: #9bb3d9; font-style: italic; }
+
+  .result-section { margin: 10px 0; font-size: 11pt; }
+  .result-section label { cursor: pointer; margin-right: 20px; }
+  .result-section input { width: 18px; height: 18px; accent-color: #0d3b8e; vertical-align: middle; }
+
+  .sig-section { margin-top: 16px; }
+  .sig-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 9pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 3px; right: 5px; font-size: 8pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 14px; }
+  .submit-btn { font-family: 'Times New Roman', serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 8px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print { .sig-section, .submit-section { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-11</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Evaluaci&oacute;n por Competencias &mdash; Cultivo</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Nombre</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">Cargo</span><br>{{f_cargo}}</div>
+</div>
+<div class="meta">
+  <div class="cell"><span class="label">Experiencia en el cargo</span><br><input id="f_experiencia" placeholder="SI / NO — tiempo"></div>
+  <div class="cell" style="flex:2"><span class="label">Herramientas que ha manejado</span><br><input id="f_herramientas" placeholder="Listar herramientas..."></div>
+</div>
+
+<div class="group-title">Cultivo General</div>
+
+<div class="question">
+  <div class="q-title">1. Enumere 3 labores de rutina que se realizan en cada bloque</div>
+  <input class="q-open" id="r1" placeholder="Respuesta...">
+</div>
+<div class="question">
+  <div class="q-title">2. Normalmente, &iquest;un basal se pinchar&iacute;a?</div>
+  <input class="q-open" id="r2" placeholder="Respuesta...">
+</div>
+<div class="question">
+  <div class="q-title">3. &iquest;Cu&aacute;ntas hojas se debe dejar cuando se corta la flor?</div>
+  <label class="radio-option"><input type="radio" name="q3" value="a"> Una tijera</label>
+  <label class="radio-option"><input type="radio" name="q3" value="b"> &frac14; tijera</label>
+  <label class="radio-option"><input type="radio" name="q3" value="c"> &frac12; tijera</label>
+</div>
+<div class="question">
+  <div class="q-title">4. &iquest;Para qu&eacute; es importante tener un desyeme al d&iacute;a?</div>
+  <input class="q-open" id="r4" placeholder="Respuesta...">
+</div>
+<div class="question">
+  <div class="q-title">5a. &iquest;Cu&aacute;ndo agobian&iacute;a una miniplanta? (Seleccione 1)</div>
+  <label class="radio-option"><input type="radio" name="q5a" value="1"> Cuando la siembra</label>
+  <label class="radio-option"><input type="radio" name="q5a" value="2"> Cuando tenga la primera escoba</label>
+  <label class="radio-option"><input type="radio" name="q5a" value="3"> Cuando tenga el primer basal</label>
+  <label class="radio-option"><input type="radio" name="q5a" value="4"> Cuando tenga m&aacute;s de una escoba</label>
+</div>
+<div class="question">
+  <div class="q-title">5b. &iquest;Cu&aacute;ndo se corta subiendo? (Se&ntilde;ale 2)</div>
+  <label class="check-option"><input type="checkbox" name="q5b" value="1"> Planta vieja y alta</label>
+  <label class="check-option"><input type="checkbox" name="q5b" value="2"> Planta en formaci&oacute;n</label>
+  <label class="check-option"><input type="checkbox" name="q5b" value="3"> Tallo delgado</label>
+  <label class="check-option"><input type="checkbox" name="q5b" value="4"> Tallo grueso</label>
+</div>
+<div class="question">
+  <div class="q-title">6. &iquest;Cu&aacute;ndo se corta bajando? (Se&ntilde;ale 2)</div>
+  <label class="check-option"><input type="checkbox" name="q6" value="1"> El tallo es grueso</label>
+  <label class="check-option"><input type="checkbox" name="q6" value="2"> Est&aacute; en el 2do alambre</label>
+  <label class="check-option"><input type="checkbox" name="q6" value="3"> Est&aacute; en el 4to alambre</label>
+  <label class="check-option"><input type="checkbox" name="q6" value="4"> El tallo es delgado</label>
+</div>
+<div class="question">
+  <div class="q-title">7. &iquest;Para qu&eacute; se escarifica?</div>
+  <input class="q-open" id="r7" placeholder="Respuesta...">
+</div>
+
+<div class="group-title">Sanidad Vegetal y Fumigaci&oacute;n</div>
+
+<div class="question">
+  <div class="q-title">8a. Describa actividades realizadas en fumigaci&oacute;n</div>
+  <input class="q-open" id="r8a" placeholder="Respuesta...">
+</div>
+<div class="question">
+  <div class="q-title">8b. Enumere 2 enfermedades en cultivo de flores</div>
+  <input class="q-open" id="r8b" placeholder="Respuesta...">
+</div>
+
+<div class="group-title">Resultado y Observaciones</div>
+
+<div class="obs-section">
+  <div class="obs-row"><label>Novedades TTHH</label><input id="f_novedades" placeholder="Novedades..."></div>
+  <div class="obs-row"><label>Obs. Jefe/Supervisor</label><input id="f_obs_jefe" placeholder="Observaciones..."></div>
+</div>
+
+<div class="result-section">
+  <strong>Resultado:</strong>
+  <label><input type="radio" name="resultado" value="aprobado"> Aprobado</label>
+  <label><input type="radio" name="resultado" value="no_aprobado"> No Aprobado</label>
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col">
+      <label>Firma TTHH</label>
+      <div class="sig-canvas-wrap"><canvas id="sig1" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span></div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Evaluado/a</label>
+      <div class="sig-canvas-wrap"><canvas id="sig2" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span></div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Jefe/Supervisor</label>
+      <div class="sig-canvas-wrap"><canvas id="sig3" width="240" height="100"></canvas><span class="sig-clear" onclick="clearCanvas('sig3')">borrar</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  ['sig1','sig2','sig3'].forEach(setupCanvas);
+
+  window.clearCanvas = function(id) { const c = document.getElementById(id); c.getContext('2d').clearRect(0, 0, c.width, c.height); };
+  function isBlank(c) { const b = document.createElement('canvas'); b.width = c.width; b.height = c.height; return c.toDataURL() === b.toDataURL(); }
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const s1 = document.getElementById('sig1'), s2 = document.getElementById('sig2'), s3 = document.getElementById('sig3');
+    if (isBlank(s1) || isBlank(s2) || isBlank(s3)) {
+      msg.textContent = 'Las tres firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const resultado = document.querySelector('input[name="resultado"]:checked')?.value;
+    if (!resultado) {
+      msg.textContent = 'Seleccione el resultado.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const respuestas = {
+      r1: document.getElementById('r1').value,
+      r2: document.getElementById('r2').value,
+      q3: document.querySelector('input[name="q3"]:checked')?.value || null,
+      r4: document.getElementById('r4').value,
+      q5a: document.querySelector('input[name="q5a"]:checked')?.value || null,
+      q5b: [...document.querySelectorAll('input[name="q5b"]:checked')].map(c => c.value),
+      q6: [...document.querySelectorAll('input[name="q6"]:checked')].map(c => c.value),
+      r7: document.getElementById('r7').value,
+      r8a: document.getElementById('r8a').value,
+      r8b: document.getElementById('r8b').value,
+    };
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'evaluacion_competencias',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          fecha: PREFILL.fecha,
+          cargo: document.getElementById('f_cargo')?.value || PREFILL.cargo || '',
+          experiencia: document.getElementById('f_experiencia').value,
+          herramientas: document.getElementById('f_herramientas').value,
+          respuestas: respuestas,
+          novedades_tthh: document.getElementById('f_novedades').value,
+          observacion_jefe: document.getElementById('f_obs_jefe').value,
+          resultado: resultado,
+          evaluacion_induccion_id: PREFILL.evaluacion_induccion_id || null,
+          firma_tthh: s1.toDataURL('image/png'),
+          firma_evaluado: s2.toDataURL('image/png'),
+          firma_evaluador_jefe: s3.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Evaluaci\u00f3n enviada correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

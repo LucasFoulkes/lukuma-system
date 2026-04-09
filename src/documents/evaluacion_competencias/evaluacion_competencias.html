@@ -1,0 +1,145 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 10mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 7.5pt; color: #000; line-height: 1.3; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 11pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 7.5pt; color: #444; margin-bottom: 2px; }
+  .header .doc-info { font-size: 6pt; color: #555; }
+  .header .doc-info span { margin: 0 4px; }
+
+  .doc-title { text-align: center; font-size: 9pt; font-weight: 700; text-transform: uppercase; margin: 4px 0; }
+
+  .meta { display: flex; gap: 6px; margin-bottom: 6px; border: 1px solid #ccc; padding: 3px 6px; font-size: 7pt; }
+  .meta .cell { flex: 1; }
+  .meta .label { font-weight: 700; color: #555; font-size: 5.5pt; text-transform: uppercase; }
+
+  .group-title { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 2px 5px; margin: 5px 0 2px; border-left: 2px solid #0d3b8e; }
+
+  .question { margin-bottom: 5px; padding-left: 4px; }
+  .q-title { font-weight: 700; font-size: 7.5pt; margin-bottom: 2px; }
+  .q-answer { border-bottom: 0.5px solid #ccc; min-height: 14px; margin-bottom: 2px; color: #0d3b8e; font-size: 7pt; }
+  .option { display: flex; align-items: center; gap: 4px; margin-bottom: 1px; font-size: 7pt; }
+  .box { width: 9px; height: 9px; border: 0.5px solid #000; display: inline-flex; align-items: center; justify-content: center; font-size: 7pt; font-weight: 700; }
+
+  .obs-table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  .obs-table td { padding: 2px 4px; font-size: 7pt; border-bottom: 0.5px solid #ddd; }
+  .obs-table td:first-child { width: 140px; font-weight: 600; color: #333; }
+
+  .result-row { display: flex; gap: 20px; align-items: center; margin: 6px 0; font-size: 8pt; }
+  .result-row .box { width: 12px; height: 12px; }
+
+  .sig-block { display: flex; gap: 20px; margin-top: 12px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 150px; margin: 0 auto 1px; }
+  .sig-block .sig-name { font-size: 6.5pt; font-weight: 700; }
+  .sig-block .sig-role { font-size: 6pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-11</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Evaluaci&oacute;n por Competencias &mdash; Cultivo</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Nombre</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">Cargo</span><br><span class="fill">{{cargo}}</span></div>
+  <div class="cell"><span class="label">Experiencia</span><br><span class="fill">{{experiencia}}</span></div>
+</div>
+
+<div class="meta" style="margin-bottom:8px">
+  <div class="cell" style="flex:3"><span class="label">Herramientas que ha manejado</span><br><span class="fill">{{herramientas}}</span></div>
+</div>
+
+<div class="group-title">Cultivo General</div>
+
+<div class="question">
+  <div class="q-title">1. Enumere 3 labores de rutina que se realizan en cada bloque</div>
+  <div class="q-answer">{{r1}}</div>
+</div>
+<div class="question">
+  <div class="q-title">2. Normalmente, &iquest;un basal se pinchar&iacute;a?</div>
+  <div class="q-answer">{{r2}}</div>
+</div>
+<div class="question">
+  <div class="q-title">3. &iquest;Cu&aacute;ntas hojas se debe dejar cuando se corta la flor?</div>
+  <div class="option"><div class="box">{{q3_a}}</div> Una tijera</div>
+  <div class="option"><div class="box">{{q3_b}}</div> &frac14; tijera</div>
+  <div class="option"><div class="box">{{q3_c}}</div> &frac12; tijera</div>
+</div>
+<div class="question">
+  <div class="q-title">4. &iquest;Para qu&eacute; es importante tener un desyeme al d&iacute;a?</div>
+  <div class="q-answer">{{r4}}</div>
+</div>
+<div class="question">
+  <div class="q-title">5a. &iquest;Cu&aacute;ndo agobian&iacute;a una miniplanta? (1)</div>
+  <div class="option"><div class="box">{{q5a_1}}</div> Cuando la siembra</div>
+  <div class="option"><div class="box">{{q5a_2}}</div> Cuando tenga la primera escoba</div>
+  <div class="option"><div class="box">{{q5a_3}}</div> Cuando tenga el primer basal</div>
+  <div class="option"><div class="box">{{q5a_4}}</div> Cuando tenga m&aacute;s de una escoba</div>
+</div>
+<div class="question">
+  <div class="q-title">5b. &iquest;Cu&aacute;ndo se corta subiendo? (2)</div>
+  <div class="option"><div class="box">{{q5b_1}}</div> Planta vieja y alta</div>
+  <div class="option"><div class="box">{{q5b_2}}</div> Planta en formaci&oacute;n</div>
+  <div class="option"><div class="box">{{q5b_3}}</div> Tallo delgado</div>
+  <div class="option"><div class="box">{{q5b_4}}</div> Tallo grueso</div>
+</div>
+<div class="question">
+  <div class="q-title">6. &iquest;Cu&aacute;ndo se corta bajando? (2)</div>
+  <div class="option"><div class="box">{{q6_1}}</div> El tallo es grueso</div>
+  <div class="option"><div class="box">{{q6_2}}</div> Est&aacute; en el 2do alambre</div>
+  <div class="option"><div class="box">{{q6_3}}</div> Est&aacute; en el 4to alambre</div>
+  <div class="option"><div class="box">{{q6_4}}</div> El tallo es delgado</div>
+</div>
+<div class="question">
+  <div class="q-title">7. &iquest;Para qu&eacute; se escarifica?</div>
+  <div class="q-answer">{{r7}}</div>
+</div>
+
+<div class="group-title">Sanidad Vegetal y Fumigaci&oacute;n</div>
+
+<div class="question">
+  <div class="q-title">8a. Describa actividades realizadas en fumigaci&oacute;n</div>
+  <div class="q-answer">{{r8a}}</div>
+</div>
+<div class="question">
+  <div class="q-title">8b. Enumere 2 enfermedades en cultivo de flores</div>
+  <div class="q-answer">{{r8b}}</div>
+</div>
+
+<div class="group-title">Resultado y Observaciones</div>
+
+<table class="obs-table">
+  <tr><td>Novedades TTHH</td><td class="fill">{{novedades_tthh}}</td></tr>
+  <tr><td>Observaci&oacute;n Jefe/Supervisor</td><td class="fill">{{observacion_jefe}}</td></tr>
+</table>
+
+<div class="result-row">
+  <strong>Resultado:</strong>
+  <span><div class="box" style="display:inline-flex">{{res_aprobado}}</div> Aprobado</span>
+  <span><div class="box" style="display:inline-flex">{{res_no_aprobado}}</div> No Aprobado</span>
+</div>
+
+<div class="sig-block">
+  <div class="sig"><div class="line"></div><div class="sig-name">{{tthh}}</div><div class="sig-role">Talento Humano</div></div>
+  <div class="sig"><div class="line"></div><div class="sig-name">{{nombres}} {{apellidos}}</div><div class="sig-role">Evaluado/a</div></div>
+  <div class="sig"><div class="line"></div><div class="sig-name">{{evaluador_jefe}}</div><div class="sig-role">Jefe de &Aacute;rea / Supervisor</div></div>
+</div>
+
+</body>
+</html>

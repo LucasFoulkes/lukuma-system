@@ -1,0 +1,123 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 12mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 8.5pt; color: #000; line-height: 1.35; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 13pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 8.5pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 7.5pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+
+  .doc-title { text-align: center; font-size: 10pt; font-weight: 700; text-transform: uppercase; margin: 8px 0 6px; }
+
+  .group-title { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 2px 6px; margin: 6px 0 3px; border-left: 3px solid #0d3b8e; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  td { padding: 2px 5px; font-size: 8pt; vertical-align: middle; border-bottom: 0.5px solid #ddd; height: 18px; }
+  td.label { width: 160px; font-weight: 600; color: #333; }
+  td.value { color: #0d3b8e; }
+
+  .two-col { display: flex; gap: 12px; }
+  .two-col > div { flex: 1; }
+
+  .dotacion-grid { display: flex; gap: 8px; margin-bottom: 6px; }
+  .dotacion-grid .item { flex: 1; text-align: center; border: 0.5px solid #ccc; padding: 3px; font-size: 7.5pt; }
+  .dotacion-grid .item .lbl { font-weight: 600; color: #333; }
+  .dotacion-grid .item .val { color: #0d3b8e; font-size: 9pt; }
+
+  .croquis-box { border: 1px solid #ccc; height: 120px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 8pt; }
+
+  .huellas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 6px; }
+  .huella { border: 0.5px solid #ccc; height: 55px; text-align: center; padding-top: 3px; font-size: 6.5pt; color: #888; }
+
+  .sig-block { text-align: center; margin-top: 25px; }
+  .sig-block .line { border-top: 1px solid #000; width: 250px; margin: 0 auto 2px; }
+  .sig-block .sig-name { font-size: 8pt; font-weight: 700; }
+  .sig-block .sig-role { font-size: 7pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-05</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Datos Personales</div>
+
+<div class="two-col">
+<div>
+
+<div class="group-title">Identificaci&oacute;n</div>
+<table>
+  <tr><td class="label">Fecha de Ingreso</td><td class="value">{{fecha_ingreso}}</td></tr>
+  <tr><td class="label">Apellidos y Nombres</td><td class="value">{{apellidos}} {{nombres}}</td></tr>
+  <tr><td class="label">C&eacute;dula</td><td class="value">{{cedula}}</td></tr>
+  <tr><td class="label">&Aacute;rea de Ingreso</td><td class="value">{{area_ingreso}}</td></tr>
+</table>
+
+<div class="group-title">Informaci&oacute;n Bancaria</div>
+<table>
+  <tr><td class="label">Banco</td><td class="value">{{banco}}</td></tr>
+  <tr><td class="label">Tipo de Cuenta</td><td class="value">{{tipo_cuenta}}</td></tr>
+  <tr><td class="label">N&uacute;mero de Cuenta</td><td class="value">{{numero_cuenta}}</td></tr>
+</table>
+
+<div class="group-title">Dotaci&oacute;n de Uniformes y Equipos</div>
+<div class="dotacion-grid">
+  <div class="item"><div class="lbl">Mandil</div><div class="val">{{talla_mandil}}</div></div>
+  <div class="item"><div class="lbl">Camiseta</div><div class="val">{{talla_camiseta}}</div></div>
+  <div class="item"><div class="lbl">Botas</div><div class="val">{{talla_botas}}</div></div>
+  <div class="item"><div class="lbl">Zapatos</div><div class="val">{{talla_zapatos}}</div></div>
+</div>
+
+<div class="group-title">Ruta de Transporte</div>
+<table>
+  <tr><td class="label">Ruta</td><td class="value">{{ruta}}</td></tr>
+  <tr><td class="label">Parada</td><td class="value">{{parada}}</td></tr>
+</table>
+
+</div>
+<div>
+
+<div class="group-title">Ubicaci&oacute;n de Vivienda</div>
+<div class="croquis-box">Croquis de ubicaci&oacute;n</div>
+
+<div class="group-title">Biometr&iacute;a &mdash; Mano Derecha</div>
+<div class="huellas-grid">
+  <div class="huella">Pulgar</div>
+  <div class="huella">&Iacute;ndice</div>
+  <div class="huella">Medio</div>
+  <div class="huella">Anular</div>
+  <div class="huella">Me&ntilde;ique</div>
+</div>
+
+<div class="group-title">Biometr&iacute;a &mdash; Mano Izquierda</div>
+<div class="huellas-grid">
+  <div class="huella">Pulgar</div>
+  <div class="huella">&Iacute;ndice</div>
+  <div class="huella">Medio</div>
+  <div class="huella">Anular</div>
+  <div class="huella">Me&ntilde;ique</div>
+</div>
+
+</div>
+</div>
+
+<div class="sig-block">
+  <div class="line"></div>
+  <div class="sig-name">{{nombres}} {{apellidos}}</div>
+  <div class="sig-role">Firma del Trabajador</div>
+</div>
+
+</body>
+</html>

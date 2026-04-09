@@ -1,0 +1,138 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 12mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 8.5pt; color: #000; line-height: 1.35; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 13pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 8.5pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 7.5pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+
+  .doc-title { text-align: center; font-size: 10pt; font-weight: 700; text-transform: uppercase; margin: 8px 0 6px; }
+
+  .group-title { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 2px 6px; margin: 6px 0 3px; border-left: 3px solid #0d3b8e; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  td { padding: 2px 5px; font-size: 8pt; vertical-align: middle; border-bottom: 0.5px solid #ddd; height: 18px; }
+  td.label { width: 160px; font-weight: 600; color: #333; }
+  td.value { color: #0d3b8e; }
+
+  .two-col { display: flex; gap: 12px; }
+  .two-col > div { flex: 1; }
+
+  .sig-block { display: flex; gap: 40px; margin-top: 30px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 200px; margin: 0 auto 2px; }
+  .sig-block .sig-name { font-size: 8pt; font-weight: 700; }
+  .sig-block .sig-role { font-size: 7pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-04</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Hoja de Entrevista</div>
+
+<div class="two-col">
+<div>
+
+<div class="group-title">Datos de Identificaci&oacute;n</div>
+<table>
+  <tr><td class="label">Tipo de Identificaci&oacute;n</td><td class="value">{{tipo_id}}</td></tr>
+  <tr><td class="label">N&uacute;mero de Identificaci&oacute;n</td><td class="value">{{cedula}}</td></tr>
+  <tr><td class="label">Apellidos</td><td class="value">{{apellidos}}</td></tr>
+  <tr><td class="label">Nombres</td><td class="value">{{nombres}}</td></tr>
+  <tr><td class="label">Sexo</td><td class="value">{{sexo}}</td></tr>
+  <tr><td class="label">Fecha de Nacimiento</td><td class="value">{{fecha_nacimiento}}</td></tr>
+  <tr><td class="label">Estado Civil</td><td class="value">{{estado_civil}}</td></tr>
+  <tr><td class="label">Tipo de Sangre</td><td class="value">{{tipo_sangre}}</td></tr>
+  <tr><td class="label">Estatura (m)</td><td class="value">{{estatura}}</td></tr>
+  <tr><td class="label">Peso (lb)</td><td class="value">{{peso}}</td></tr>
+</table>
+
+<div class="group-title">Domicilio</div>
+<table>
+  <tr><td class="label">Lugar de Nacimiento</td><td class="value">{{lugar_nacimiento}}</td></tr>
+  <tr><td class="label">Lugar de Residencia</td><td class="value">{{lugar_residencia}}</td></tr>
+  <tr><td class="label">Calle</td><td class="value">{{calle}}</td></tr>
+  <tr><td class="label">Casa N&uacute;mero</td><td class="value">{{casa_numero}}</td></tr>
+  <tr><td class="label">Referencia</td><td class="value">{{referencia}}</td></tr>
+</table>
+
+<div class="group-title">Contacto</div>
+<table>
+  <tr><td class="label">M&oacute;vil</td><td class="value">{{movil}}</td></tr>
+  <tr><td class="label">Tel&eacute;fono 1</td><td class="value">{{telefono1}}</td></tr>
+  <tr><td class="label">Tel&eacute;fono 2</td><td class="value">{{telefono2}}</td></tr>
+  <tr><td class="label">Email personal</td><td class="value">{{email}}</td></tr>
+  <tr><td class="label">Email alternativo</td><td class="value">{{email_alt}}</td></tr>
+</table>
+
+<div class="group-title">Formaci&oacute;n Acad&eacute;mica</div>
+<table>
+  <tr><td class="label">Profesi&oacute;n</td><td class="value">{{profesion}}</td></tr>
+  <tr><td class="label">T&iacute;tulo acad&eacute;mico</td><td class="value">{{titulo}}</td></tr>
+</table>
+
+</div>
+<div>
+
+<div class="group-title">Datos Laborales</div>
+<table>
+  <tr><td class="label">Cargo</td><td class="value">{{cargo}}</td></tr>
+  <tr><td class="label">Perfil de Cargo</td><td class="value">{{perfil_cargo}}</td></tr>
+  <tr><td class="label">Fecha Ingreso</td><td class="value">{{fecha_ingreso}}</td></tr>
+  <tr><td class="label">Sueldo</td><td class="value">{{sueldo}}</td></tr>
+  <tr><td class="label">Relaci&oacute;n Laboral</td><td class="value">{{relacion_laboral}}</td></tr>
+  <tr><td class="label">Seguro Social</td><td class="value">{{seguro_social}}</td></tr>
+  <tr><td class="label">Perfil de Horario</td><td class="value">{{perfil_horario}}</td></tr>
+  <tr><td class="label">Tipo de Pago MRL</td><td class="value">{{tipo_pago_mrl}}</td></tr>
+</table>
+
+<div class="group-title">Estructura Organizacional</div>
+<table>
+  <tr><td class="label">Estructura de Costos</td><td class="value">{{estructura_costos}}</td></tr>
+  <tr><td class="label">Departamento</td><td class="value">{{departamento}}</td></tr>
+  <tr><td class="label">Sucursal / Finca</td><td class="value">{{finca}}</td></tr>
+  <tr><td class="label">Grupo N&oacute;mina</td><td class="value">{{grupo_nomina}}</td></tr>
+  <tr><td class="label">Plantilla</td><td class="value">{{plantilla}}</td></tr>
+</table>
+
+<div class="group-title">Datos Bancarios</div>
+<table>
+  <tr><td class="label">Forma de Pago</td><td class="value">{{forma_pago}}</td></tr>
+  <tr><td class="label">Banco principal</td><td class="value">{{banco}}</td></tr>
+  <tr><td class="label">Tipo de Cuenta</td><td class="value">{{tipo_cuenta}}</td></tr>
+  <tr><td class="label">N&uacute;mero de Cuenta</td><td class="value">{{numero_cuenta}}</td></tr>
+</table>
+
+</div>
+</div>
+
+<div class="sig-block">
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{nombres}} {{apellidos}}</div>
+    <div class="sig-role">Entrevistado/a</div>
+  </div>
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{entrevistador}}</div>
+    <div class="sig-role">Entrevistador/a</div>
+  </div>
+</div>
+
+</body>
+</html>

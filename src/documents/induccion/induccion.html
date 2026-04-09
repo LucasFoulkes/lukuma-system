@@ -1,0 +1,167 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 10mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 7.5pt; color: #000; line-height: 1.3; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 11pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 7.5pt; color: #444; margin-bottom: 3px; }
+  .header .doc-info { font-size: 6.5pt; color: #555; }
+  .header .doc-info span { margin: 0 5px; }
+
+  .doc-title { text-align: center; font-size: 9pt; font-weight: 700; text-transform: uppercase; margin: 6px 0 4px; }
+
+  .meta { display: flex; gap: 8px; margin-bottom: 6px; border: 1px solid #ccc; padding: 3px 6px; font-size: 7pt; }
+  .meta .cell { flex: 1; }
+  .meta .label { font-weight: 700; color: #555; font-size: 6pt; text-transform: uppercase; }
+
+  .group-title { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 2px 5px; margin: 5px 0 2px; border-left: 2px solid #0d3b8e; }
+  .group-desc { font-size: 6.5pt; color: #666; font-style: italic; margin: 0 0 2px 7px; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 3px; }
+  td { padding: 1.5px 4px; font-size: 7pt; border-bottom: 0.5px solid #eee; vertical-align: middle; }
+  td:last-child { width: 50px; text-align: center; }
+  .box { width: 10px; height: 10px; border: 0.5px solid #000; display: inline-flex; align-items: center; justify-content: center; font-size: 7pt; font-weight: 700; }
+
+  .two-col { display: flex; gap: 8px; }
+  .two-col > div { flex: 1; }
+
+  .obs { margin-top: 4px; }
+  .obs table td:first-child { width: 100px; font-weight: 600; color: #333; }
+  .obs table td { border-bottom: 0.5px solid #ddd; padding: 2px 4px; font-size: 7pt; }
+
+  .sig-block { display: flex; gap: 30px; margin-top: 15px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 180px; margin: 0 auto 1px; }
+  .sig-block .sig-name { font-size: 7pt; font-weight: 700; }
+  .sig-block .sig-role { font-size: 6.5pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-08</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Inducci&oacute;n al Personal Nuevo</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Trabajador/a</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">&Aacute;rea / Puesto</span><br><span class="fill">{{area_puesto}}</span></div>
+  <div class="cell"><span class="label">Instructor</span><br>Talento Humano</div>
+</div>
+
+<div class="two-col">
+<div>
+
+<div class="group-title">Talento Humano</div>
+<table>
+  <tr><td>Historia de la Empresa</td><td><div class="box">X</div></td></tr>
+  <tr><td>Misi&oacute;n de la Empresa</td><td><div class="box">X</div></td></tr>
+  <tr><td>Visi&oacute;n de la Empresa</td><td><div class="box">X</div></td></tr>
+  <tr><td>Nuestra Organizaci&oacute;n</td><td><div class="box">X</div></td></tr>
+  <tr><td>Documentaci&oacute;n Legal</td><td><div class="box">X</div></td></tr>
+  <tr><td>Horarios y Transporte</td><td><div class="box">X</div></td></tr>
+  <tr><td>Nuestros Servicios</td><td><div class="box">X</div></td></tr>
+  <tr><td>Socializaci&oacute;n Reglamento Interno</td><td><div class="box">X</div></td></tr>
+  <tr><td>Derechos, Obligaciones y Funciones</td><td><div class="box">X</div></td></tr>
+  <tr><td>Protecci&oacute;n de Datos Personales</td><td><div class="box">X</div></td></tr>
+</table>
+
+<div class="group-title">Seguridad Industrial y Salud Ocupacional</div>
+<table>
+  <tr><td>Uso de EPP y Ropa de Trabajo</td><td><div class="box">X</div></td></tr>
+  <tr><td>Plan de Emergencia y Evacuaci&oacute;n</td><td><div class="box">X</div></td></tr>
+  <tr><td>&Aacute;reas Restringidas</td><td><div class="box">X</div></td></tr>
+  <tr><td>Riesgos de Exposici&oacute;n seg&uacute;n Puesto</td><td><div class="box">X</div></td></tr>
+  <tr><td>Hidrataci&oacute;n y Manejo de Desechos</td><td><div class="box">X</div></td></tr>
+  <tr><td>Comit&eacute; Paritario de SST</td><td><div class="box">X</div></td></tr>
+  <tr><td>Reglamento Higiene y Seguridad</td><td><div class="box">X</div></td></tr>
+</table>
+
+<div class="group-title">Certificaciones y Ambiente</div>
+<table>
+  <tr><td>Certificaci&oacute;n BASC</td><td><div class="box">X</div></td></tr>
+  <tr><td>Certificaci&oacute;n Flor Ecuador</td><td><div class="box">X</div></td></tr>
+  <tr><td>Certificaci&oacute;n Flor Verde</td><td><div class="box">X</div></td></tr>
+  <tr><td>Reducci&oacute;n Huella de Carbono</td><td><div class="box">X</div></td></tr>
+  <tr><td>Pol&iacute;tica Socioambiental 5R</td><td><div class="box">X</div></td></tr>
+</table>
+
+</div>
+<div>
+
+<div class="group-title">Trabajo Social</div>
+<table>
+  <tr><td>Bienestar Social Laboral</td><td><div class="box">X</div></td></tr>
+  <tr><td>Pol&iacute;tica SGCS</td><td><div class="box">X</div></td></tr>
+  <tr><td>Prevenci&oacute;n Riesgo Psicosocial</td><td><div class="box">X</div></td></tr>
+  <tr><td>Comit&eacute;s Internos</td><td><div class="box">X</div></td></tr>
+  <tr><td>Responsabilidad Social y BASC</td><td><div class="box">X</div></td></tr>
+  <tr><td>C&oacute;digo &Eacute;tica, Prevenci&oacute;n Corrupci&oacute;n</td><td><div class="box">X</div></td></tr>
+  <tr><td>Prevenci&oacute;n Lavado de Activos</td><td><div class="box">X</div></td></tr>
+</table>
+
+<div class="group-title">Departamento M&eacute;dico</div>
+<table>
+  <tr><td>Dispensario M&eacute;dico</td><td><div class="box">X</div></td></tr>
+  <tr><td>Turnos Atenci&oacute;n M&eacute;dica</td><td><div class="box">X</div></td></tr>
+  <tr><td>Certificados M&eacute;dicos</td><td><div class="box">X</div></td></tr>
+  <tr><td>Prevenci&oacute;n Alcohol, Drogas, VIH</td><td><div class="box">X</div></td></tr>
+  <tr><td>Botiquines de Emergencia</td><td><div class="box">X</div></td></tr>
+  <tr><td>Ambiente de Trabajo Saludable</td><td><div class="box">X</div></td></tr>
+  <tr><td>Prevenci&oacute;n Riesgos Laborales</td><td><div class="box">X</div></td></tr>
+</table>
+
+<div class="group-title">Documentos Entregados</div>
+<table>
+  <tr><td>C&oacute;digo de &Eacute;tica y Conducta</td><td><div class="box">X</div></td></tr>
+  <tr><td>Reglamento Interno de Trabajo</td><td><div class="box">X</div></td></tr>
+  <tr><td>Reglamento Higiene y Seguridad</td><td><div class="box">X</div></td></tr>
+  <tr><td>Contrato de Trabajo</td><td><div class="box">X</div></td></tr>
+  <tr><td>Tr&iacute;pticos Certificaciones y Comit&eacute;s</td><td><div class="box">X</div></td></tr>
+</table>
+
+<div class="group-title">Inducci&oacute;n T&eacute;cnica</div>
+<table>
+  <tr><td>Procedimientos del Puesto</td><td><div class="box">X</div></td></tr>
+  <tr><td>Lo que debe y no debe hacer</td><td><div class="box">X</div></td></tr>
+</table>
+
+</div>
+</div>
+
+<div class="group-title">Observaciones</div>
+<div class="obs">
+<table>
+  <tr><td>Evaluaci&oacute;n</td><td class="fill">{{evaluacion}}</td></tr>
+  <tr><td>Recomendaciones</td><td class="fill">{{recomendaciones}}</td></tr>
+  <tr><td>Retroalimentaci&oacute;n</td><td class="fill">{{retroalimentacion}}</td></tr>
+</table>
+</div>
+
+<div class="sig-block">
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{nombres}} {{apellidos}}</div>
+    <div class="sig-role">Trabajador/a</div>
+  </div>
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{capacitador}}</div>
+    <div class="sig-role">Capacitador/a — Talento Humano</div>
+  </div>
+</div>
+
+</body>
+</html>

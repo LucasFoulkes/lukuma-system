@@ -1,0 +1,117 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 10mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 7pt; color: #000; line-height: 1.25; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 10pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 7pt; color: #444; margin-bottom: 2px; }
+  .header .doc-info { font-size: 6pt; color: #555; }
+  .header .doc-info span { margin: 0 4px; }
+
+  .doc-title { text-align: center; font-size: 8pt; font-weight: 700; text-transform: uppercase; margin: 4px 0; }
+
+  p { text-align: justify; margin-bottom: 4px; }
+
+  .section-title { font-size: 7pt; font-weight: 700; text-transform: uppercase; margin: 5px 0 2px; padding-bottom: 1px; border-bottom: 0.5px solid #000; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  th { font-size: 5.5pt; font-weight: 700; text-transform: uppercase; padding: 2px 3px; border-bottom: 1px solid #000; text-align: left; }
+  td { padding: 1.5px 3px; font-size: 6.5pt; vertical-align: top; border-bottom: 0.5px solid #eee; }
+  td:first-child { width: 18px; text-align: center; }
+  td:nth-child(2) { width: 140px; }
+
+  .legal { font-size: 6.5pt; color: #333; margin-bottom: 3px; }
+  .legal strong { font-size: 6.5pt; }
+
+  .declaration { margin-top: 4px; padding: 3px 6px; background: #f8f9fc; border-left: 2px solid #0d3b8e; font-size: 6.5pt; }
+
+  .sig-block { display: flex; gap: 30px; margin-top: 12px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 180px; margin: 0 auto 1px; }
+  .sig-block .sig-name { font-size: 7pt; font-weight: 700; }
+  .sig-block .sig-role { font-size: 6pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-09</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Consentimiento para Tratamiento de Datos Personales &mdash; Enrolamiento</div>
+
+<p>En la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>, entre <strong>FOULKES AGUAD ROBERTO</strong>, en representaci&oacute;n de <strong>CANANVALLE S.A.</strong> (en adelante &ldquo;el empleador&rdquo;), y <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula N&deg; <strong><span class="fill">{{cedula}}</span></strong> (en adelante &ldquo;el trabajador&rdquo;), contratado/a desde el <span class="fill">{{fecha_ingreso}}</span>.</p>
+
+<div class="legal">
+<p>De conformidad con la <strong>Ley Org&aacute;nica de Protecci&oacute;n de Datos Personales</strong> (26 de mayo de 2021), el trabajador otorga su consentimiento libre, espec&iacute;fico, informado e inequ&iacute;voco para que el empleador, en calidad de responsable del tratamiento, recopile, almacene, utilice y transfiera sus datos personales conforme a las finalidades detalladas a continuaci&oacute;n. Los datos ser&aacute;n conservados durante 3 a&ntilde;os posteriores a la terminaci&oacute;n de la relaci&oacute;n laboral. El empleador podr&aacute; transferir datos a terceros nacionales e internacionales para las finalidades declaradas.</p>
+</div>
+
+<div class="section-title">Datos Personales Autorizados y Finalidades</div>
+
+<table>
+<thead><tr><th>N&deg;</th><th>Dato Personal</th><th>Finalidades</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>C&eacute;dula y copia</td><td>Entrevista, afiliaci&oacute;n IESS, contrato, carnet, sistema Venture, cuentas bancarias, d&eacute;cimos, certificaciones, actas finiquito, roles de pago</td></tr>
+<tr><td>2</td><td>Nombres y apellidos</td><td>Documentos de ingreso, contrato SUT, IESS, Venture, roles, auditor&iacute;as, capacitaciones, finiquito</td></tr>
+<tr><td>3</td><td>Lugar y fecha nacimiento</td><td>Verificar mayor&iacute;a de edad, lugar de votaci&oacute;n, Venture, beneficio cumplea&ntilde;os, SUT</td></tr>
+<tr><td>4</td><td>Estado civil</td><td>Beneficios sociales y legales, Venture, visita domiciliaria, registro contrato MDT</td></tr>
+<tr><td>5</td><td>Hoja de datos personales</td><td>Registro persona nueva o reingreso</td></tr>
+<tr><td>6</td><td>Fotograf&iacute;a</td><td>Carnet, certificaciones BASC/Flor Ecuador/Rainforest Alliance, videos y publicaciones</td></tr>
+<tr><td>7</td><td>Info. dactilar / facial</td><td>Control asistencia biom&eacute;trico, ficha enrolamiento, certificaciones</td></tr>
+<tr><td>8</td><td>Planilla servicios b&aacute;sicos</td><td>Verificar domicilio, cambio ruta transporte, certificaciones</td></tr>
+<tr><td>9</td><td>Carnet de discapacidad</td><td>Porcentaje y tipo discapacidad, Venture, auditor&iacute;as, certificaciones</td></tr>
+<tr><td>10</td><td>C&eacute;dula representante discapacidad intelectual</td><td>Firma contrato en caso de discapacidad intelectual</td></tr>
+<tr><td>11</td><td>Nombres persona discapacidad intelectual</td><td>Identificar tutor, entregar informaci&oacute;n laboral</td></tr>
+<tr><td>12</td><td>Tel&eacute;fono tutor discapacidad</td><td>Comunicaci&oacute;n y entrega informaci&oacute;n del trabajador</td></tr>
+<tr><td>13</td><td>Correo persona discapacidad</td><td>Medio de comunicaci&oacute;n y constancia</td></tr>
+<tr><td>14</td><td>Direcci&oacute;n tutor discapacidad</td><td>Traslado del trabajador en emergencia</td></tr>
+<tr><td>15</td><td>Partida matrimonio / Uni&oacute;n de hecho</td><td>Beneficios legales y sociales, Venture (actualizar anualmente)</td></tr>
+<tr><td>16</td><td>Partida nacimiento / C&eacute;dula hijos</td><td>Beneficios legales, sociales y empresariales, Venture</td></tr>
+<tr><td>17</td><td>C&eacute;dula c&oacute;nyuge / pareja</td><td>Extensi&oacute;n beneficios salud y sociales</td></tr>
+<tr><td>18</td><td>Certificado de votaci&oacute;n</td><td>Requisitos legales de contrataci&oacute;n</td></tr>
+<tr><td>19</td><td>Mecanizado IESS</td><td>Estabilidad laboral y experiencia previa</td></tr>
+<tr><td>20</td><td>Direcci&oacute;n y croquis domicilio</td><td>Certificaciones, visita domiciliaria, ruta transporte, Venture</td></tr>
+<tr><td>21</td><td>Contacto de emergencia</td><td>Incidentes/accidentes, inasistencias, liquidaciones, Venture</td></tr>
+<tr><td>22</td><td>Correo electr&oacute;nico</td><td>Reglamentos, pol&iacute;ticas, notificaciones, SUT, IESS, Venture, roles</td></tr>
+<tr><td>23</td><td>Etnia</td><td>Registro contrato SUT, visita domiciliaria</td></tr>
+<tr><td>24</td><td>G&eacute;nero</td><td>Registro contrato SUT, visita domiciliaria, Venture</td></tr>
+<tr><td>25</td><td>Firma</td><td>Contrato SUT, IESS, finiquito, entrevista, d&eacute;cimos, inducci&oacute;n, evaluaciones, permisos</td></tr>
+<tr><td>26</td><td>Cuenta bancaria</td><td>Venture, pago mensual, anticipo, utilidades, pr&eacute;stamos, d&eacute;cimos</td></tr>
+<tr><td>27</td><td>Familiar con discapacidad</td><td>Determinar si puede ser sustituto persona con discapacidad</td></tr>
+<tr><td>28</td><td>Familiares con quienes vive</td><td>Visita domiciliaria, seguimiento casos sociales y ausentismo</td></tr>
+<tr><td>29</td><td>Ingresos y egresos</td><td>Visita domiciliaria, ficha actualizaci&oacute;n datos, certificaciones</td></tr>
+<tr><td>30</td><td>Instrucci&oacute;n educativa</td><td>Evaluar conocimientos, compatibilidad horario, Venture</td></tr>
+<tr><td>31</td><td>Tallas de dotaci&oacute;n</td><td>Venture, requerimiento y registro entrega uniformes</td></tr>
+<tr><td>32</td><td>Licencia de conducci&oacute;n</td><td>Verificar tipo licencia para operar veh&iacute;culos/maquinaria</td></tr>
+</tbody>
+</table>
+
+<div class="declaration">
+El trabajador declara haber sido debidamente informado sobre el alcance del consentimiento otorgado y ratifica el consentimiento para el tratamiento de sus datos personales por parte del empleador, incluso con anterioridad a la fecha de firma del presente documento.
+</div>
+
+<div class="sig-block">
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">FOULKES AGUAD ROBERTO</div>
+    <div class="sig-role">Representante Legal — CANANVALLE S.A.</div>
+  </div>
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{nombres}} {{apellidos}}</div>
+    <div class="sig-role">Trabajador/a — C.I. {{cedula}}</div>
+  </div>
+</div>
+
+</body>
+</html>

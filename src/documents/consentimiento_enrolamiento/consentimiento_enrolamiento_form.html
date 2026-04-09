@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Consentimiento Enrolamiento — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 10pt; color: #000; line-height: 1.4; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 15pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+
+  .doc-title { text-align: center; font-size: 11pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 8px; }
+
+  p { text-align: justify; margin-bottom: 8px; }
+
+  .section-title { font-size: 10pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  th { font-size: 8pt; font-weight: 700; text-transform: uppercase; padding: 3px 5px; border-bottom: 1.5px solid #000; text-align: left; }
+  td { padding: 3px 5px; font-size: 8.5pt; vertical-align: top; border-bottom: 0.5px solid #eee; }
+  td:first-child { width: 22px; text-align: center; color: #888; }
+  td:nth-child(2) { width: 180px; font-weight: 600; }
+
+  .legal { font-size: 9pt; color: #333; margin-bottom: 6px; }
+
+  .declaration { margin: 10px 0; padding: 8px 10px; background: #f8f9fc; border-left: 3px solid #0d3b8e; font-size: 9.5pt; }
+
+  .sig-section { margin-top: 20px; }
+  .sig-row { display: flex; gap: 24px; justify-content: center; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 9.5pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 3px; right: 5px; font-size: 8pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 14px; }
+  .submit-btn { font-family: 'Times New Roman', serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 8px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print { .sig-section, .submit-section { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-09</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Consentimiento para Tratamiento de Datos Personales &mdash; Enrolamiento</div>
+
+<p>En la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>, entre <strong>FOULKES AGUAD ROBERTO</strong>, en representaci&oacute;n de <strong>CANANVALLE S.A.</strong>, y <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula N&deg; <strong><span class="fill">{{cedula}}</span></strong>, contratado/a desde el <span class="fill">{{fecha_ingreso}}</span>.</p>
+
+<div class="legal">
+<p>De conformidad con la <strong>Ley Org&aacute;nica de Protecci&oacute;n de Datos Personales</strong>, el trabajador otorga su consentimiento para que el empleador recopile, almacene, utilice y transfiera sus datos personales. Los datos ser&aacute;n conservados durante 3 a&ntilde;os posteriores a la terminaci&oacute;n de la relaci&oacute;n laboral.</p>
+</div>
+
+<div class="section-title">Datos Personales Autorizados y Finalidades</div>
+
+<table>
+<thead><tr><th>N&deg;</th><th>Dato Personal</th><th>Finalidades</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>C&eacute;dula y copia</td><td>Entrevista, IESS, contrato, carnet, Venture, cuentas bancarias, d&eacute;cimos, certificaciones, finiquito, roles</td></tr>
+<tr><td>2</td><td>Nombres y apellidos</td><td>Documentos ingreso, contrato SUT, IESS, Venture, roles, auditor&iacute;as, capacitaciones</td></tr>
+<tr><td>3</td><td>Lugar y fecha nacimiento</td><td>Mayor&iacute;a de edad, lugar votaci&oacute;n, Venture, beneficio cumplea&ntilde;os</td></tr>
+<tr><td>4</td><td>Estado civil</td><td>Beneficios sociales/legales, Venture, visita domiciliaria, MDT</td></tr>
+<tr><td>5</td><td>Hoja datos personales</td><td>Registro persona nueva o reingreso</td></tr>
+<tr><td>6</td><td>Fotograf&iacute;a</td><td>Carnet, certificaciones, videos y publicaciones</td></tr>
+<tr><td>7</td><td>Info. dactilar / facial</td><td>Control asistencia, ficha enrolamiento, certificaciones</td></tr>
+<tr><td>8</td><td>Planilla servicios b&aacute;sicos</td><td>Verificar domicilio, ruta transporte</td></tr>
+<tr><td>9</td><td>Carnet discapacidad</td><td>Tipo discapacidad, Venture, auditor&iacute;as</td></tr>
+<tr><td>10</td><td>C&eacute;dula repr. discapacidad</td><td>Firma contrato discapacidad intelectual</td></tr>
+<tr><td>11</td><td>Nombres pers. discapacidad</td><td>Identificar tutor</td></tr>
+<tr><td>12</td><td>Tel. tutor discapacidad</td><td>Comunicaci&oacute;n</td></tr>
+<tr><td>13</td><td>Correo pers. discapacidad</td><td>Constancia</td></tr>
+<tr><td>14</td><td>Dir. tutor discapacidad</td><td>Traslado en emergencia</td></tr>
+<tr><td>15</td><td>Partida matrimonio</td><td>Beneficios, Venture</td></tr>
+<tr><td>16</td><td>Partida/c&eacute;dula hijos</td><td>Beneficios, Venture</td></tr>
+<tr><td>17</td><td>C&eacute;dula c&oacute;nyuge</td><td>Extensi&oacute;n beneficios salud</td></tr>
+<tr><td>18</td><td>Certificado votaci&oacute;n</td><td>Requisitos legales</td></tr>
+<tr><td>19</td><td>Mecanizado IESS</td><td>Estabilidad laboral</td></tr>
+<tr><td>20</td><td>Direcci&oacute;n y croquis</td><td>Certificaciones, visita, ruta transporte</td></tr>
+<tr><td>21</td><td>Contacto emergencia</td><td>Incidentes, inasistencias, liquidaciones</td></tr>
+<tr><td>22</td><td>Correo electr&oacute;nico</td><td>Reglamentos, pol&iacute;ticas, SUT, IESS, Venture, roles</td></tr>
+<tr><td>23</td><td>Etnia</td><td>Registro SUT, visita domiciliaria</td></tr>
+<tr><td>24</td><td>G&eacute;nero</td><td>Registro SUT, Venture</td></tr>
+<tr><td>25</td><td>Firma</td><td>Contrato, IESS, finiquito, entrevista, d&eacute;cimos, inducci&oacute;n, permisos</td></tr>
+<tr><td>26</td><td>Cuenta bancaria</td><td>Venture, pago mensual, anticipo, utilidades, d&eacute;cimos</td></tr>
+<tr><td>27</td><td>Familiar discapacidad</td><td>Sustituto persona con discapacidad</td></tr>
+<tr><td>28</td><td>Familiares convivientes</td><td>Visita domiciliaria, seguimiento social</td></tr>
+<tr><td>29</td><td>Ingresos y egresos</td><td>Visita domiciliaria, actualizaci&oacute;n datos</td></tr>
+<tr><td>30</td><td>Instrucci&oacute;n educativa</td><td>Evaluar conocimientos, compatibilidad horario</td></tr>
+<tr><td>31</td><td>Tallas dotaci&oacute;n</td><td>Venture, requerimiento uniformes</td></tr>
+<tr><td>32</td><td>Licencia conducci&oacute;n</td><td>Verificar tipo licencia veh&iacute;culos/maquinaria</td></tr>
+</tbody>
+</table>
+
+<div class="declaration">
+El trabajador declara haber sido debidamente informado sobre el alcance del consentimiento otorgado y ratifica el consentimiento para el tratamiento de sus datos personales por parte del empleador, incluso con anterioridad a la fecha de firma del presente documento.
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col">
+      <label>Firma Representante Legal</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig1" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span>
+      </div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Trabajador/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig2" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('sig1');
+  setupCanvas('sig2');
+
+  window.clearCanvas = function(id) { const c = document.getElementById(id); c.getContext('2d').clearRect(0, 0, c.width, c.height); };
+
+  function isBlank(canvas) { const b = document.createElement('canvas'); b.width = canvas.width; b.height = canvas.height; return canvas.toDataURL() === b.toDataURL(); }
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sig1 = document.getElementById('sig1');
+    const sig2 = document.getElementById('sig2');
+    if (isBlank(sig1) || isBlank(sig2)) {
+      msg.textContent = 'Ambas firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'consentimiento_enrolamiento',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          ciudad: PREFILL.ciudad,
+          fecha: PREFILL.fecha,
+          fecha_ingreso: PREFILL.fecha_ingreso,
+          induccion_id: PREFILL.induccion_id || null,
+          firma_empleador: sig1.toDataURL('image/png'),
+          firma_trabajador: sig2.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Consentimiento registrado correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

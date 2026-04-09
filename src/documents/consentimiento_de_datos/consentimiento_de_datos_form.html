@@ -1,0 +1,255 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Consentimiento de Datos — CANANVALLE S.A.</title>
+<style>
+  @page { size: A4; margin: 15mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #000; line-height: 1.45; max-width: 750px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  /* header */
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 16pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 10pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 9pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  /* title */
+  .doc-title { text-align: center; font-size: 13pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 12px; }
+
+  /* body text */
+  p { text-align: justify; margin-bottom: 10px; }
+
+  /* section titles */
+  .section-title { font-size: 11pt; font-weight: 700; text-transform: uppercase; margin: 14px 0 6px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+
+  /* data table */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  th { font-size: 9pt; font-weight: 700; text-transform: uppercase; padding: 5px 6px; border-bottom: 1.5px solid #000; text-align: left; }
+  td { padding: 4px 6px; font-size: 9.5pt; vertical-align: middle; border-bottom: 0.5px solid #ccc; }
+  td:first-child { text-align: center; width: 28px; }
+  td:nth-child(2) { width: 150px; }
+
+  /* inline fields */
+  .field { display: inline-block; border-bottom: 1px solid #0d3b8e; min-width: 140px; color: #0d3b8e; padding: 1px 4px; font-family: inherit; font-size: inherit; }
+  input.field { background: none; border: none; border-bottom: 1px solid #0d3b8e; outline: none; font-family: inherit; font-size: inherit; color: #0d3b8e; min-width: 140px; padding: 1px 4px; }
+  input.field::placeholder { color: #9bb3d9; font-style: italic; }
+
+  /* signature */
+  .sig-section { margin-top: 20px; text-align: center; }
+  .sig-section label { font-size: 10pt; font-weight: 700; display: block; margin-bottom: 6px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 4px; right: 6px; font-size: 9pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  /* submit */
+  .submit-section { text-align: center; margin-top: 16px; }
+  .submit-btn { font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; letter-spacing: 0.5px; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 10px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  /* print: hide form controls, show clean doc */
+  @media print {
+    body { padding: 0; max-width: none; font-size: 9.5pt; }
+    input.field { border-bottom: none; }
+    .sig-section, .submit-section { display: none; }
+    .print-sig-area { display: block !important; text-align: center; margin-top: 60px; }
+    .print-sig-area .line { border-top: 1px solid #000; width: 300px; margin: 0 auto 3px; }
+    .print-sig-area .sig-name { font-size: 9pt; font-weight: 700; }
+    .print-sig-area .sig-id { font-size: 8.5pt; color: #333; }
+  }
+  .print-sig-area { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-03</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Consentimiento para Tratamiento de Datos Personales</div>
+
+<p>
+Yo, <strong>{{field_nombres}} {{field_apellidos}}</strong>, identificado/a con c&eacute;dula de identidad N&deg; <strong>{{field_cedula}}</strong>, a trav&eacute;s del presente documento doy mi expreso y voluntario consentimiento para que los Datos Personales se&ntilde;alados a continuaci&oacute;n sean utilizados por la Compa&ntilde;&iacute;a <strong>CANANVALLE S.A.</strong> dentro del proceso de selecci&oacute;n o reclutamiento laboral cuyo tratamiento espec&iacute;fico se describe a continuaci&oacute;n:
+</p>
+
+<div class="section-title">Proceso de Selecci&oacute;n</div>
+
+<table>
+  <thead>
+    <tr><th>N&deg;</th><th>Informaci&oacute;n</th><th>Finalidad</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>C&eacute;dula de identidad</td><td>Verificaci&oacute;n de antecedentes penales y judiciales, Interpol, certificaciones BASC, Flor Ecuador, Flor Verde. Confirmaci&oacute;n de identidad.</td></tr>
+    <tr><td>2</td><td>Nombres y Apellidos</td><td>Tratamiento de datos en proceso de selecci&oacute;n, hoja de entrevista, evaluaci&oacute;n de competencias.</td></tr>
+    <tr><td>3</td><td>Fecha de nacimiento</td><td>Evitar contrataci&oacute;n de menores de edad. Verificaci&oacute;n lugar de votaci&oacute;n.</td></tr>
+    <tr><td>4</td><td>Estado civil</td><td>Beneficios sociales, legales y empresariales. Registro contrato, plataformas Ministerio de Trabajo.</td></tr>
+    <tr><td>5</td><td>Contactos telef&oacute;nicos</td><td>Notificaciones de selecci&oacute;n, contrataci&oacute;n y seguimientos.</td></tr>
+    <tr><td>6</td><td>Correo electr&oacute;nico</td><td>Registro en plataformas SUT, IESS. Env&iacute;o de reglamentos, pol&iacute;ticas e informativos.</td></tr>
+    <tr><td>7</td><td>Direcci&oacute;n domicilio</td><td>Rutas de transporte, cumplimiento certificaciones BASC, Flor Ecuador, Flor Verde.</td></tr>
+    <tr><td>8</td><td>Cuenta bancaria</td><td>Cancelaci&oacute;n de haberes laborales.</td></tr>
+    <tr><td>9</td><td>Instrucci&oacute;n educativa</td><td>Perfil requerido para contrataci&oacute;n. Compatibilidad de horarios.</td></tr>
+    <tr><td>10</td><td>Contacto emergencia</td><td>Incidentes o accidentes en instalaciones de la empresa.</td></tr>
+    <tr><td>11</td><td>Familiares en finca</td><td>Ubicar en &aacute;reas diferentes para evitar nepotismo.</td></tr>
+    <tr><td>12</td><td>Actividades extra laborales</td><td>Cumplimiento SRI. Ficha &aacute;rea de salud.</td></tr>
+    <tr><td>13</td><td>Informaci&oacute;n de discapacidad</td><td>&Aacute;reas aptas para el trabajo y horarios adecuados. Estad&iacute;sticas sociales.</td></tr>
+    <tr><td>14</td><td>Hijos menores de edad</td><td>Beneficios sociales, legales y empresariales.</td></tr>
+    <tr><td>15</td><td>Experiencia laboral</td><td>Evaluar perfil y conocimiento para ubicaci&oacute;n del cargo.</td></tr>
+    <tr><td>16</td><td>Firma</td><td>Consentimiento para tratamiento de datos, hoja de entrevista, evaluaci&oacute;n de competencias.</td></tr>
+  </tbody>
+</table>
+
+<div class="section-title">Declaraci&oacute;n</div>
+
+<p>Declaro y certifico que los datos personales que entrego me corresponden y que son verdaderos, exactos, aut&eacute;nticos, completos y correctos; y que soy mayor de edad. En caso de no ser seleccionado se conservar&aacute; la informaci&oacute;n por 30 d&iacute;as h&aacute;biles. Para constancia suscribo en 2 ejemplares.</p>
+
+<p>Dado en la ciudad de {{field_ciudad}}, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>.</p>
+
+<!-- print only: clean signature area -->
+<div class="print-sig-area">
+  <div class="line"></div>
+  <div class="sig-name" id="print-name"></div>
+  <div class="sig-id" id="print-ci"></div>
+</div>
+
+<!-- screen only: signature canvas + submit -->
+<div class="sig-section">
+  <label>Firma</label>
+  <div class="sig-canvas-wrap">
+    <canvas id="sig" width="400" height="150"></canvas>
+    <span class="sig-clear" id="sig-clear">borrar</span>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  // signature canvas
+  const canvas = document.getElementById('sig');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const t = e.touches ? e.touches[0] : e;
+    return { x: t.clientX - r.left, y: t.clientY - r.top };
+  }
+
+  function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); }
+  function move(e) { if (!drawing) return; e.preventDefault(); const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+  function end() { drawing = false; }
+
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', end);
+  canvas.addEventListener('mouseleave', end);
+  canvas.addEventListener('touchstart', start);
+  canvas.addEventListener('touchmove', move);
+  canvas.addEventListener('touchend', end);
+
+  document.getElementById('sig-clear').addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  // sync print name/ci
+  function syncPrint() {
+    const n = document.getElementById('f_nombres');
+    const a = document.getElementById('f_apellidos');
+    const c = document.getElementById('f_cedula');
+    if (n) document.getElementById('print-name').textContent = (n.value || n.textContent) + ' ' + (a ? a.value || a.textContent : '');
+    if (c) document.getElementById('print-ci').textContent = 'C.I. ' + (c.value || c.textContent);
+  }
+  document.querySelectorAll('input.field').forEach(i => i.addEventListener('input', syncPrint));
+  syncPrint();
+
+  // submit
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...';
+    msg.className = 'msg';
+
+    const val = (id, fallback) => String(document.getElementById(id)?.value || fallback || '').trim();
+    const nombres = val('f_nombres', PREFILL.nombres);
+    const apellidos = val('f_apellidos', PREFILL.apellidos);
+    const cedula = val('f_cedula', PREFILL.cedula);
+    const ciudad = val('f_ciudad', PREFILL.ciudad);
+
+    if (!nombres || !apellidos || !cedula || !ciudad) {
+      msg.textContent = 'Todos los campos son requeridos.';
+      msg.className = 'msg err';
+      btn.disabled = false;
+      return;
+    }
+
+    // check signature is not blank
+    const sigData = canvas.toDataURL('image/png');
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    if (sigData === blank.toDataURL('image/png')) {
+      msg.textContent = 'La firma es requerida.';
+      msg.className = 'msg err';
+      btn.disabled = false;
+      return;
+    }
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'consentimiento_de_datos',
+          nombres, apellidos, cedula, ciudad,
+          cargo_id: PREFILL.cargo_id || null,
+          unidad_id: PREFILL.unidad_id || null,
+          fecha: PREFILL.fecha,
+          firma: sigData,
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        msg.textContent = 'Documento enviado correctamente.';
+        msg.className = 'msg ok';
+      } else {
+        msg.textContent = data.error || 'Error al enviar.';
+        msg.className = 'msg err';
+        btn.disabled = false;
+      }
+    } catch (e) {
+      msg.textContent = e.message;
+      msg.className = 'msg err';
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

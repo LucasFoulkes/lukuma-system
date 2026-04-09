@@ -1,2 +1,5 @@
 node_modules
 system.db.backup
+.env
+downloads/
+storage/

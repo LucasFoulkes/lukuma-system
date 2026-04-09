@@ -1,0 +1,262 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inducci&oacute;n — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 10pt; color: #000; line-height: 1.4; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 15pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 4px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 6px; }
+
+  .doc-title { text-align: center; font-size: 12pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 8px; }
+
+  .meta { display: flex; gap: 10px; margin-bottom: 10px; border: 1px solid #ccc; padding: 6px 8px; font-size: 9pt; }
+  .meta .cell { flex: 1; }
+  .meta .label { font-weight: 700; color: #555; font-size: 7pt; text-transform: uppercase; }
+  .meta input { border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 9pt; color: #0d3b8e; width: 100%; outline: none; background: none; padding: 1px 2px; }
+  .meta input::placeholder { color: #9bb3d9; font-style: italic; }
+
+  .group-title { font-size: 10pt; font-weight: 700; text-transform: uppercase; background: #f0f3f8; padding: 3px 6px; margin: 10px 0 4px; border-left: 3px solid #0d3b8e; }
+
+  .checklist { margin-bottom: 6px; }
+  .check-item { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 0.5px solid #f0f0f0; font-size: 9.5pt; }
+  .check-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #0d3b8e; }
+
+  .obs-fields { margin: 8px 0; }
+  .obs-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .obs-row label { font-weight: 600; font-size: 9pt; min-width: 120px; }
+  .obs-row input { flex: 1; border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 9.5pt; color: #0d3b8e; padding: 2px 4px; outline: none; background: none; }
+  .obs-row input::placeholder { color: #9bb3d9; font-style: italic; }
+
+  .sig-section { margin-top: 20px; }
+  .sig-row { display: flex; gap: 24px; justify-content: center; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 9.5pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 3px; right: 5px; font-size: 8pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 14px; }
+  .submit-btn { font-family: 'Times New Roman', serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 8px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print { .sig-section, .submit-section { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-08</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Inducci&oacute;n al Personal Nuevo</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Trabajador/a</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">&Aacute;rea / Puesto</span><br>{{f_area_puesto}}</div>
+  <div class="cell"><span class="label">Instructor</span><br>Talento Humano</div>
+</div>
+
+<div class="group-title">Talento Humano</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Historia de la Empresa</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Misi&oacute;n de la Empresa</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Visi&oacute;n de la Empresa</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Nuestra Organizaci&oacute;n</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Documentaci&oacute;n Legal</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Horarios y Transporte</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Nuestros Servicios</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Socializaci&oacute;n Reglamento Interno</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Derechos, Obligaciones y Funciones</label>
+  <label class="check-item"><input type="checkbox" data-t="th" checked> Protecci&oacute;n de Datos Personales</label>
+</div>
+
+<div class="group-title">Seguridad Industrial y Salud Ocupacional</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Uso de EPP y Ropa de Trabajo</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Plan de Emergencia y Evacuaci&oacute;n</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> &Aacute;reas Restringidas</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Riesgos de Exposici&oacute;n seg&uacute;n Puesto</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Hidrataci&oacute;n y Manejo de Desechos</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Comit&eacute; Paritario de SST</label>
+  <label class="check-item"><input type="checkbox" data-t="sso" checked> Reglamento Higiene y Seguridad</label>
+</div>
+
+<div class="group-title">Certificaciones y Ambiente</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="cert" checked> Certificaci&oacute;n BASC</label>
+  <label class="check-item"><input type="checkbox" data-t="cert" checked> Certificaci&oacute;n Flor Ecuador</label>
+  <label class="check-item"><input type="checkbox" data-t="cert" checked> Certificaci&oacute;n Flor Verde</label>
+  <label class="check-item"><input type="checkbox" data-t="cert" checked> Reducci&oacute;n Huella de Carbono</label>
+  <label class="check-item"><input type="checkbox" data-t="cert" checked> Pol&iacute;tica Socioambiental 5R</label>
+</div>
+
+<div class="group-title">Trabajo Social</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Bienestar Social Laboral</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Pol&iacute;tica SGCS</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Prevenci&oacute;n Riesgo Psicosocial</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Comit&eacute;s Internos</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Responsabilidad Social y BASC</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> C&oacute;digo &Eacute;tica, Prevenci&oacute;n Corrupci&oacute;n</label>
+  <label class="check-item"><input type="checkbox" data-t="ts" checked> Prevenci&oacute;n Lavado de Activos</label>
+</div>
+
+<div class="group-title">Departamento M&eacute;dico</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Dispensario M&eacute;dico</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Turnos Atenci&oacute;n M&eacute;dica</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Certificados M&eacute;dicos</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Prevenci&oacute;n Alcohol, Drogas, VIH</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Botiquines de Emergencia</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Ambiente de Trabajo Saludable</label>
+  <label class="check-item"><input type="checkbox" data-t="med" checked> Prevenci&oacute;n Riesgos Laborales</label>
+</div>
+
+<div class="group-title">Documentos Entregados</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="doc" checked> C&oacute;digo de &Eacute;tica y Conducta</label>
+  <label class="check-item"><input type="checkbox" data-t="doc" checked> Reglamento Interno de Trabajo</label>
+  <label class="check-item"><input type="checkbox" data-t="doc" checked> Reglamento Higiene y Seguridad</label>
+  <label class="check-item"><input type="checkbox" data-t="doc" checked> Contrato de Trabajo</label>
+  <label class="check-item"><input type="checkbox" data-t="doc" checked> Tr&iacute;pticos Certificaciones y Comit&eacute;s</label>
+</div>
+
+<div class="group-title">Inducci&oacute;n T&eacute;cnica</div>
+<div class="checklist">
+  <label class="check-item"><input type="checkbox" data-t="tec" checked> Procedimientos del Puesto</label>
+  <label class="check-item"><input type="checkbox" data-t="tec" checked> Lo que debe y no debe hacer</label>
+</div>
+
+<div class="group-title">Observaciones</div>
+<div class="obs-fields">
+  <div class="obs-row"><label>Evaluaci&oacute;n</label><input id="f_evaluacion" placeholder="M&eacute;todo de evaluaci&oacute;n..."></div>
+  <div class="obs-row"><label>Recomendaciones</label><input id="f_recomendaciones" placeholder="Recomendaciones..."></div>
+  <div class="obs-row"><label>Retroalimentaci&oacute;n</label><input id="f_retroalimentacion" placeholder="Retroalimentaci&oacute;n..."></div>
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col">
+      <label>Firma Trabajador/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig1" width="280" height="110"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span>
+      </div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Capacitador/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig2" width="280" height="110"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('sig1');
+  setupCanvas('sig2');
+
+  window.clearCanvas = function(id) { document.getElementById(id).getContext('2d').clearRect(0, 0, 280, 110); };
+
+  function isBlank(canvas) {
+    const b = document.createElement('canvas'); b.width = canvas.width; b.height = canvas.height;
+    return canvas.toDataURL() === b.toDataURL();
+  }
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sig1 = document.getElementById('sig1');
+    const sig2 = document.getElementById('sig2');
+    if (isBlank(sig1) || isBlank(sig2)) {
+      msg.textContent = 'Ambas firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const temas = {};
+    document.querySelectorAll('.check-item input').forEach(cb => {
+      const label = cb.parentElement.textContent.trim();
+      const group = cb.dataset.t;
+      if (!temas[group]) temas[group] = {};
+      temas[group][label] = cb.checked;
+    });
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'induccion',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          ciudad: PREFILL.ciudad,
+          fecha: PREFILL.fecha,
+          area_puesto: document.getElementById('f_area_puesto')?.value || PREFILL.area_puesto || '',
+          decimos_id: PREFILL.decimos_id || null,
+          temas_completados: temas,
+          evaluacion: document.getElementById('f_evaluacion').value,
+          recomendaciones: document.getElementById('f_recomendaciones').value,
+          retroalimentacion: document.getElementById('f_retroalimentacion').value,
+          firma_trabajador: sig1.toDataURL('image/png'),
+          firma_capacitador: sig2.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Inducci&oacute;n registrada correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

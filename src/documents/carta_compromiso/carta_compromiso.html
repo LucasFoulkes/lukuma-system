@@ -1,0 +1,73 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 15mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 9.5pt; color: #000; line-height: 1.45; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 14pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  .doc-title { text-align: center; font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 10px 0 8px; }
+
+  p { text-align: justify; margin-bottom: 10px; }
+
+  .compromisos { margin: 12px 0; }
+  .compromisos p { margin-bottom: 10px; padding-left: 10px; border-left: 2px solid #ddd; }
+
+  .sig-block { display: flex; gap: 40px; margin-top: 60px; }
+  .sig-block .sig { flex: 1; text-align: center; }
+  .sig-block .line { border-top: 1px solid #000; width: 240px; margin: 0 auto 2px; }
+  .sig-block .sig-name { font-size: 9pt; font-weight: 700; }
+  .sig-block .sig-id { font-size: 8.5pt; color: #333; }
+  .sig-block .sig-role { font-size: 8pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-07</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Carta de Compromiso con el Sistema de Gesti&oacute;n</div>
+
+<p>Yo, <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula de identidad N&deg; <strong><span class="fill">{{cedula}}</span></strong>, en calidad de trabajador/a de <strong>CANANVALLE S.A.</strong>, declaro lo siguiente:</p>
+
+<div class="compromisos">
+  <p>Entiendo que el cumplimiento de los lineamientos del Sistema de Gesti&oacute;n es necesario para la empresa y me comprometo a contribuir a la mejora de las actividades sociales, laborales, ambientales, de seguridad y salud, y al buen uso de los recursos naturales, econ&oacute;micos y sociales.</p>
+
+  <p>Manifiesto estar de acuerdo y cumplir&eacute;, en la medida de mis funciones y responsabilidades, con todos los criterios y normas establecidas, previniendo actos de corrupci&oacute;n y soborno.</p>
+
+  <p>Hago constar haber recibido y le&iacute;do todos los procesos que tiene la empresa <strong>CANANVALLE S.A.</strong>, comprometi&eacute;ndome a trabajar bajo los mismos, y declaro conocer la importancia y el contexto de las normas dentro del SGCS BASC.</p>
+
+  <p>Me comprometo a leer y aplicar todos los criterios y requisitos que apliquen estos lineamientos dentro de mi puesto de trabajo.</p>
+</div>
+
+<p>Para constancia, suscribo la presente en la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>.</p>
+
+<div class="sig-block">
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{nombres}} {{apellidos}}</div>
+    <div class="sig-id">C.I. {{cedula}}</div>
+    <div class="sig-role">Trabajador/a</div>
+  </div>
+  <div class="sig">
+    <div class="line"></div>
+    <div class="sig-name">{{talento_humano}}</div>
+    <div class="sig-role">Dep. Talento Humano — CANANVALLE S.A.</div>
+  </div>
+</div>
+
+</body>
+</html>

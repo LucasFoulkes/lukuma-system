@@ -1,0 +1,226 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evaluaci&oacute;n Inducci&oacute;n — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #000; line-height: 1.45; max-width: 750px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 16pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 10pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 9pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  .doc-title { text-align: center; font-size: 13pt; font-weight: 700; text-transform: uppercase; margin: 14px 0 12px; }
+
+  .meta { display: flex; gap: 10px; margin-bottom: 14px; border: 1px solid #ccc; padding: 6px 10px; font-size: 10pt; }
+  .meta .cell { flex: 1; }
+  .meta .label { font-weight: 700; color: #555; font-size: 7.5pt; text-transform: uppercase; }
+  .meta input { border: none; border-bottom: 1px solid #0d3b8e; font-family: inherit; font-size: 10pt; color: #0d3b8e; width: 100%; outline: none; background: none; padding: 1px 2px; }
+  .meta input::placeholder { color: #9bb3d9; font-style: italic; }
+
+  .question { margin-bottom: 16px; padding: 10px; border: 1px solid #eee; border-radius: 4px; }
+  .q-title { font-weight: 700; font-size: 11pt; margin-bottom: 8px; }
+  .radio-option { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; font-size: 10.5pt; cursor: pointer; }
+  .radio-option input[type="radio"] { width: 18px; height: 18px; accent-color: #0d3b8e; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+
+  .sig-section { margin-top: 20px; }
+  .sig-row { display: flex; gap: 24px; justify-content: center; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 10pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 3px; right: 5px; font-size: 8pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 14px; }
+  .submit-btn { font-family: 'Times New Roman', serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 8px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print { .sig-section, .submit-section { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-10</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Evaluaci&oacute;n de la Inducci&oacute;n</div>
+
+<div class="meta">
+  <div class="cell"><span class="label">Nombres</span><br><span class="fill">{{nombres}} {{apellidos}}</span></div>
+  <div class="cell"><span class="label">C&eacute;dula</span><br><span class="fill">{{cedula}}</span></div>
+  <div class="cell"><span class="label">&Aacute;rea</span><br>{{f_area}}</div>
+</div>
+
+<div class="question">
+  <div class="q-title">1. &iquest;Los d&iacute;as que se laboran en la empresa para cumplir las 40 horas son?</div>
+  <label class="radio-option"><input type="radio" name="q1" value="a"> Lunes a domingo</label>
+  <label class="radio-option"><input type="radio" name="q1" value="b"> Lunes a s&aacute;bado</label>
+  <label class="radio-option"><input type="radio" name="q1" value="c"> Lunes a viernes</label>
+</div>
+
+<div class="question">
+  <div class="q-title">2. &iquest;Cu&aacute;l es la pol&iacute;tica de la empresa respecto al uso de EPP?</div>
+  <label class="radio-option"><input type="radio" name="q2" value="a"> Su uso es obligatorio y debe seguirse de acuerdo con el puesto de trabajo</label>
+  <label class="radio-option"><input type="radio" name="q2" value="b"> Es opcional, dependiendo si le gusta al trabajador</label>
+  <label class="radio-option"><input type="radio" name="q2" value="c"> Se usa solo en situaciones de emergencia</label>
+</div>
+
+<div class="question">
+  <div class="q-title">3. &iquest;Marque cu&aacute;les son nuestras certificaciones?</div>
+  <label class="radio-option"><input type="radio" name="q3" value="a"> BASC / Flor Ecuador / Huella de Carbono</label>
+  <label class="radio-option"><input type="radio" name="q3" value="b"> AENOR / IRAM / CERTHIA</label>
+</div>
+
+<div class="question">
+  <div class="q-title">4. &iquest;Marque cu&aacute;les son los programas de prevenci&oacute;n en Salud Ocupacional?</div>
+  <label class="radio-option"><input type="radio" name="q4" value="a"> Servicios de protecci&oacute;n especial</label>
+  <label class="radio-option"><input type="radio" name="q4" value="b"> Programa de prevenci&oacute;n de consumo de alcohol, tabaco y otras drogas</label>
+  <label class="radio-option"><input type="radio" name="q4" value="c"> Programa de cuidados para el adulto mayor</label>
+</div>
+
+<div class="question">
+  <div class="q-title">5. &iquest;Marque qu&eacute; significa BASC?</div>
+  <label class="radio-option"><input type="radio" name="q5" value="a"> Es una alianza empresarial internacional que promueve un comercio seguro</label>
+  <label class="radio-option"><input type="radio" name="q5" value="b"> Es una certificaci&oacute;n para movilizar personas</label>
+  <label class="radio-option"><input type="radio" name="q5" value="c"> Programa de cuidados para personal vulnerable</label>
+</div>
+
+<div class="question">
+  <div class="q-title">6. &iquest;Marque qu&eacute; significa Flor Verde?</div>
+  <label class="radio-option"><input type="radio" name="q6" value="a"> Es una alianza empresarial internacional que promueve un comercio seguro</label>
+  <label class="radio-option"><input type="radio" name="q6" value="b"> Es un sello que cuida el ambiente (plantas y animales) y a las personas</label>
+  <label class="radio-option"><input type="radio" name="q6" value="c"> Es un sello que registra la calidad de la empresa</label>
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col">
+      <label>Firma Evaluado/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig1" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span>
+      </div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Evaluador/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig2" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  const CORRECT = { q1: 'b', q2: 'a', q3: 'a', q4: 'b', q5: 'a', q6: 'b' };
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('sig1');
+  setupCanvas('sig2');
+
+  window.clearCanvas = function(id) { const c = document.getElementById(id); c.getContext('2d').clearRect(0, 0, c.width, c.height); };
+
+  function isBlank(canvas) { const b = document.createElement('canvas'); b.width = canvas.width; b.height = canvas.height; return canvas.toDataURL() === b.toDataURL(); }
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sig1 = document.getElementById('sig1');
+    const sig2 = document.getElementById('sig2');
+    if (isBlank(sig1) || isBlank(sig2)) {
+      msg.textContent = 'Ambas firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const respuestas = {};
+    let answered = 0;
+    let correctas = 0;
+    for (const q of ['q1','q2','q3','q4','q5','q6']) {
+      const sel = document.querySelector(`input[name="${q}"]:checked`);
+      if (sel) {
+        answered++;
+        respuestas[q] = sel.value;
+        if (sel.value === CORRECT[q]) correctas++;
+      }
+    }
+
+    if (answered < 6) {
+      msg.textContent = 'Debe responder todas las preguntas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    const area = document.getElementById('f_area')?.value || PREFILL.area || '';
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'evaluacion_induccion',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          fecha: PREFILL.fecha,
+          area: area,
+          respuestas: respuestas,
+          correctas: correctas,
+          total: 6,
+          nota: Math.round((correctas / 6) * 100),
+          consentimiento_enrolamiento_id: PREFILL.consentimiento_enrolamiento_id || null,
+          firma_evaluado: sig1.toDataURL('image/png'),
+          firma_evaluador: sig2.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = `Evaluaci\u00f3n enviada. Resultado: ${correctas}/6 (${Math.round((correctas/6)*100)}%)`;
+        msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

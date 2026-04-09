@@ -1,0 +1,103 @@
+<html>
+<head>
+<style>
+  @page { size: A4; margin: 15mm 20mm 15mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 9.5pt; color: #000; line-height: 1.45; }
+  .fill { color: #0d3b8e; }
+
+  /* header */
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 14pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 9pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 8pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  /* title */
+  .doc-title { text-align: center; font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 10px 0 8px; }
+
+  /* body text */
+  p { text-align: justify; margin-bottom: 8px; }
+
+  /* section titles */
+  .section-title { font-size: 9.5pt; font-weight: 700; text-transform: uppercase; margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+
+  /* data table */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  th { font-size: 8pt; font-weight: 700; text-transform: uppercase; padding: 4px 6px; border-bottom: 1.5px solid #000; text-align: left; }
+  td { padding: 0 6px; font-size: 8.5pt; vertical-align: middle; border-bottom: 0.5px solid #ccc; height: 26px; }
+  td:first-child { text-align: center; width: 24px; }
+  td:nth-child(2) { width: 130px; }
+
+  /* enrollment section */
+  .enrollment { margin-top: 10px; }
+  .enrollment p { margin-bottom: 6px; }
+
+  /* signature block */
+  .signature-block { margin-top: 14px; }
+  .signature-block p { margin-bottom: 5px; text-align: left; }
+  .sig-area { text-align: center; margin-top: 70px; }
+  .sig-area .line { border-top: 1px solid #000; width: 300px; margin: 0 auto 3px; }
+  .sig-area .sig-name { font-size: 9pt; font-weight: 700; }
+  .sig-area .sig-id { font-size: 8.5pt; color: #333; }
+  .sig-area .sig-label { font-size: 8pt; color: #555; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-03</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Consentimiento para Tratamiento de Datos Personales</div>
+
+<p>
+Yo, <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula de identidad N&deg; <strong><span class="fill">{{cedula}}</span></strong>, a trav&eacute;s del presente documento doy mi expreso y voluntario consentimiento para que los Datos Personales se&ntilde;alados a continuaci&oacute;n sean utilizados por la Compa&ntilde;&iacute;a <strong>CANANVALLE S.A.</strong> dentro del proceso de selecci&oacute;n o reclutamiento laboral cuyo tratamiento espec&iacute;fico se describe a continuaci&oacute;n:
+</p>
+
+<div class="section-title">Proceso de Selecci&oacute;n</div>
+
+<table>
+  <thead>
+    <tr><th>N&deg;</th><th>Informaci&oacute;n</th><th>Finalidad</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>C&eacute;dula de identidad</td><td>Verificaci&oacute;n de antecedentes penales y judiciales, Interpol, certificaciones BASC, Flor Ecuador, Flor Verde. Confirmaci&oacute;n de identidad.</td></tr>
+    <tr><td>2</td><td>Nombres y Apellidos</td><td>Tratamiento de datos en proceso de selecci&oacute;n, hoja de entrevista, evaluaci&oacute;n de competencias.</td></tr>
+    <tr><td>3</td><td>Fecha de nacimiento</td><td>Evitar contrataci&oacute;n de menores de edad. Verificaci&oacute;n lugar de votaci&oacute;n.</td></tr>
+    <tr><td>4</td><td>Estado civil</td><td>Beneficios sociales, legales y empresariales. Registro contrato, plataformas Ministerio de Trabajo.</td></tr>
+    <tr><td>5</td><td>Contactos telef&oacute;nicos</td><td>Notificaciones de selecci&oacute;n, contrataci&oacute;n y seguimientos.</td></tr>
+    <tr><td>6</td><td>Correo electr&oacute;nico</td><td>Registro en plataformas SUT, IESS. Env&iacute;o de reglamentos, pol&iacute;ticas e informativos.</td></tr>
+    <tr><td>7</td><td>Direcci&oacute;n domicilio</td><td>Rutas de transporte, cumplimiento certificaciones BASC, Flor Ecuador, Flor Verde.</td></tr>
+    <tr><td>8</td><td>Cuenta bancaria</td><td>Cancelaci&oacute;n de haberes laborales.</td></tr>
+    <tr><td>9</td><td>Instrucci&oacute;n educativa</td><td>Perfil requerido para contrataci&oacute;n. Compatibilidad de horarios.</td></tr>
+    <tr><td>10</td><td>Contacto emergencia</td><td>Incidentes o accidentes en instalaciones de la empresa.</td></tr>
+    <tr><td>11</td><td>Familiares en finca</td><td>Ubicar en &aacute;reas diferentes para evitar nepotismo.</td></tr>
+    <tr><td>12</td><td>Actividades extra laborales</td><td>Cumplimiento SRI. Ficha &aacute;rea de salud.</td></tr>
+    <tr><td>13</td><td>Informaci&oacute;n de discapacidad</td><td>&Aacute;reas aptas para el trabajo y horarios adecuados. Estad&iacute;sticas sociales.</td></tr>
+    <tr><td>14</td><td>Hijos menores de edad</td><td>Beneficios sociales, legales y empresariales.</td></tr>
+    <tr><td>15</td><td>Experiencia laboral</td><td>Evaluar perfil y conocimiento para ubicaci&oacute;n del cargo.</td></tr>
+    <tr><td>16</td><td>Firma</td><td>Consentimiento para tratamiento de datos, hoja de entrevista, evaluaci&oacute;n de competencias.</td></tr>
+  </tbody>
+</table>
+
+<div class="section-title">Declaraci&oacute;n</div>
+
+<p>Declaro y certifico que los datos personales que entrego me corresponden y que son verdaderos, exactos, aut&eacute;nticos, completos y correctos; y que soy mayor de edad. En caso de no ser seleccionado se conservar&aacute; la informaci&oacute;n por 30 d&iacute;as h&aacute;biles. Para constancia suscribo en 2 ejemplares.</p>
+
+<p>Dado en la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>.</p>
+
+<div class="sig-area">
+  <div class="line"></div>
+  <div class="sig-name">{{nombres}} {{apellidos}}</div>
+  <div class="sig-id">C.I. <span class="fill">{{cedula}}</span></div>
+</div>
+
+</body>
+</html>

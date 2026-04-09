@@ -1,0 +1,185 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carta de Compromiso — CANANVALLE S.A.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #000; line-height: 1.45; max-width: 750px; margin: 0 auto; padding: 20px; }
+  .fill { color: #0d3b8e; }
+
+  .header { text-align: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+  .header h1 { font-size: 16pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 1px; }
+  .header .subtitle { font-size: 10pt; color: #444; margin-bottom: 6px; }
+  .header .doc-info { font-size: 9pt; color: #555; }
+  .header .doc-info span { margin: 0 8px; }
+
+  .doc-title { text-align: center; font-size: 13pt; font-weight: 700; text-transform: uppercase; margin: 14px 0 12px; }
+
+  p { text-align: justify; margin-bottom: 10px; }
+
+  .compromisos { margin: 14px 0; }
+  .compromisos p { margin-bottom: 12px; padding-left: 12px; border-left: 2px solid #ddd; }
+
+  .sig-section { margin-top: 24px; }
+  .sig-row { display: flex; gap: 30px; justify-content: center; }
+  .sig-col { text-align: center; }
+  .sig-col label { display: block; font-size: 10pt; font-weight: 700; margin-bottom: 4px; }
+  .sig-canvas-wrap { display: inline-block; border: 1px solid #ccc; border-radius: 4px; position: relative; touch-action: none; }
+  canvas { display: block; cursor: crosshair; }
+  .sig-clear { position: absolute; top: 4px; right: 6px; font-size: 9pt; color: #999; cursor: pointer; font-family: sans-serif; }
+  .sig-clear:hover { color: #333; }
+
+  .submit-section { text-align: center; margin-top: 16px; }
+  .submit-btn { font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 10px 40px; background: #0d3b8e; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .submit-btn:hover { background: #092d6e; }
+  .submit-btn:disabled { background: #999; cursor: not-allowed; }
+  .msg { margin-top: 10px; font-size: 10pt; }
+  .msg.ok { color: #1a7a2e; }
+  .msg.err { color: #c03030; }
+
+  @media print {
+    .sig-section, .submit-section { display: none; }
+    .print-sig-block { display: flex !important; gap: 40px; margin-top: 60px; }
+    .print-sig-block .sig { flex: 1; text-align: center; }
+    .print-sig-block .line { border-top: 1px solid #000; width: 240px; margin: 0 auto 2px; }
+    .print-sig-block .sig-name { font-size: 9pt; font-weight: 700; }
+    .print-sig-block .sig-role { font-size: 8pt; color: #555; }
+  }
+  .print-sig-block { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CANANVALLE S.A.</h1>
+  <div class="subtitle">Sistema Integrado de Gesti&oacute;n &mdash; Talento Humano</div>
+  <div class="doc-info">
+    <span>C&oacute;digo: SIG-TTHH-RG-07</span>
+    <span>Versi&oacute;n: 001</span>
+    <span>Fecha: <span class="fill">{{fecha}}</span></span>
+  </div>
+</div>
+
+<div class="doc-title">Carta de Compromiso con el Sistema de Gesti&oacute;n</div>
+
+<p>Yo, <strong><span class="fill">{{nombres}} {{apellidos}}</span></strong>, identificado/a con c&eacute;dula de identidad N&deg; <strong><span class="fill">{{cedula}}</span></strong>, en calidad de trabajador/a de <strong>CANANVALLE S.A.</strong>, declaro lo siguiente:</p>
+
+<div class="compromisos">
+  <p>Entiendo que el cumplimiento de los lineamientos del Sistema de Gesti&oacute;n es necesario para la empresa y me comprometo a contribuir a la mejora de las actividades sociales, laborales, ambientales, de seguridad y salud, y al buen uso de los recursos naturales, econ&oacute;micos y sociales.</p>
+
+  <p>Manifiesto estar de acuerdo y cumplir&eacute;, en la medida de mis funciones y responsabilidades, con todos los criterios y normas establecidas, previniendo actos de corrupci&oacute;n y soborno.</p>
+
+  <p>Hago constar haber recibido y le&iacute;do todos los procesos que tiene la empresa <strong>CANANVALLE S.A.</strong>, comprometi&eacute;ndome a trabajar bajo los mismos, y declaro conocer la importancia y el contexto de las normas dentro del SGCS BASC.</p>
+
+  <p>Me comprometo a leer y aplicar todos los criterios y requisitos que apliquen estos lineamientos dentro de mi puesto de trabajo.</p>
+</div>
+
+<p>Para constancia, suscribo la presente en la ciudad de <span class="fill">{{ciudad}}</span>, a los <span class="fill">{{dia}}</span> d&iacute;as del mes de <span class="fill">{{mes}}</span> del a&ntilde;o <span class="fill">{{ano}}</span>.</p>
+
+<div class="print-sig-block">
+  <div class="sig"><div class="line"></div><div class="sig-name" id="print-worker"></div><div class="sig-role">Trabajador/a</div></div>
+  <div class="sig"><div class="line"></div><div class="sig-name" id="print-th"></div><div class="sig-role">Dep. Talento Humano</div></div>
+</div>
+
+<div class="sig-section">
+  <div class="sig-row">
+    <div class="sig-col">
+      <label>Firma Trabajador/a</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig1" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig1')">borrar</span>
+      </div>
+    </div>
+    <div class="sig-col">
+      <label>Firma Dep. Talento Humano</label>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig2" width="300" height="120"></canvas>
+        <span class="sig-clear" onclick="clearCanvas('sig2')">borrar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button class="submit-btn" id="submit-btn">Enviar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+(function() {
+  const API = '{{api_base}}';
+  const TOKEN = '{{token}}';
+  const PREFILL = {{prefill_json}};
+
+  function setupCanvas(id) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    let drawing = false;
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    function pos(e) { const r = c.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    function start(e) { e.preventDefault(); drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); }
+    function move(e) { if (!drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+    function end() { drawing = false; }
+    c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); c.addEventListener('mouseup', end); c.addEventListener('mouseleave', end);
+    c.addEventListener('touchstart', start); c.addEventListener('touchmove', move); c.addEventListener('touchend', end);
+  }
+  setupCanvas('sig1');
+  setupCanvas('sig2');
+
+  window.clearCanvas = function(id) {
+    const c = document.getElementById(id);
+    c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  };
+
+  function isBlank(canvas) {
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    return canvas.toDataURL() === blank.toDataURL();
+  }
+
+  document.getElementById('print-worker').textContent = (PREFILL.nombres || '') + ' ' + (PREFILL.apellidos || '');
+  document.getElementById('print-th').textContent = PREFILL._talento_humano || '';
+
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    btn.disabled = true;
+    msg.textContent = 'Enviando...'; msg.className = 'msg';
+
+    const sig1 = document.getElementById('sig1');
+    const sig2 = document.getElementById('sig2');
+    if (isBlank(sig1) || isBlank(sig2)) {
+      msg.textContent = 'Ambas firmas son requeridas.'; msg.className = 'msg err'; btn.disabled = false; return;
+    }
+
+    try {
+      const res = await fetch(API + '/api/createDocumento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+        body: JSON.stringify({
+          tipo: 'carta_compromiso',
+          nombres: PREFILL.nombres,
+          apellidos: PREFILL.apellidos,
+          cedula: PREFILL.cedula,
+          ciudad: PREFILL.ciudad,
+          fecha: PREFILL.fecha,
+          entrevista_id: PREFILL.entrevista_id || null,
+          firma_trabajador: sig1.toDataURL('image/png'),
+          firma_talento_humano: sig2.toDataURL('image/png'),
+          _cleanup: PREFILL._cleanup || null,
+        }),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        msg.textContent = 'Carta enviada correctamente.'; msg.className = 'msg ok';
+      } else {
+        msg.textContent = result.error || 'Error al enviar.'; msg.className = 'msg err'; btn.disabled = false;
+      }
+    } catch (e) { msg.textContent = e.message; msg.className = 'msg err'; btn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>
