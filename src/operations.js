@@ -1,7 +1,7 @@
 // operations.js
 import { readFileSync, mkdirSync, writeFileSync, unlinkSync } from 'fs';
 import { eq, like, or, and, isNull, inArray, sql } from 'drizzle-orm';
-import { db, persona, empleo, cargo, unidad, banco, asistencia, plantilla, solicitud, documento, evento, sqlite,
+import { db, persona, empleo, cargo, unidad, banco, alias, asistencia, plantilla, solicitud, documento, evento, sqlite,
          registro_auditoria, contrato, saldo_vacaciones, carnet, asignacion_activo, capacitacion, caso_disciplinario } from './database.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -500,6 +500,22 @@ export const operations = {
         return { ...saldo, disponible: saldo.dias_acumulados - saldo.dias_usados - saldo.dias_reservados };
     },
 
+    listSaldosVacaciones: async function listSaldosVacaciones({ input, caller }) {
+        /**
+         * List vacation balances.
+         * Input: persona_id (number, optional), periodo (number, optional — year).
+         * Output: array of saldo_vacaciones rows, each with computed 'disponible' field.
+         */
+        requireAuth(caller);
+        const conditions = [];
+        if (input.persona_id) conditions.push(eq(saldo_vacaciones.persona_id, input.persona_id));
+        if (input.periodo) conditions.push(eq(saldo_vacaciones.periodo, input.periodo));
+        let q = db.select().from(saldo_vacaciones);
+        if (conditions.length) q = q.where(and(...conditions));
+        const rows = await q;
+        return rows.map(r => ({ ...r, disponible: r.dias_acumulados - r.dias_usados - r.dias_reservados }));
+    },
+
     listVacaciones: async function listVacaciones({ input, caller }) {
         /**
          * List vacation and permission requests.
@@ -533,6 +549,32 @@ export const operations = {
             }),
         }).returning();
         return row;
+    },
+
+    listDocumentos: async function listDocumentos({ input, caller }) {
+        /**
+         * List documentos. Always returns rows ordered by created_at DESC (most recent first).
+         * Input: tipo (string, optional — filter by document type), desde (string, optional — created_at >= date), hasta (string, optional — created_at <= date), limit (number, optional — defaults to 50).
+         * Output: array of documento rows {id, tipo, caller_id, data, created_at, updated_at}.
+         */
+        requireAuth(caller);
+        const conditions = [];
+        if (input.tipo) conditions.push(eq(documento.tipo, input.tipo));
+        if (input.desde) conditions.push(sql`${documento.created_at} >= ${input.desde}`);
+        if (input.hasta) conditions.push(sql`${documento.created_at} <= ${input.hasta}`);
+        let q = db.select().from(documento);
+        if (conditions.length) q = q.where(and(...conditions));
+        return q.orderBy(sql`${documento.created_at} DESC`).limit(input.limit || 50);
+    },
+
+    listAliases: async function listAliases({ caller }) {
+        /**
+         * List all unit aliases.
+         * Input: none.
+         * Output: array of alias rows {unidad_id, alias}.
+         */
+        requireAuth(caller);
+        return db.select().from(alias);
     },
 
     createDocumento: async function createDocumento({ input, caller }) {
@@ -587,16 +629,18 @@ export const operations = {
     // ─── Evento ──────────────────────────────────────────────────────────────
     listEventos: async function listEventos({ input, caller }) {
         /**
-         * List calendar events for a person.
-         * Input: persona_id (number, required), desde (string, optional — fecha start), hasta (string, optional — fecha end).
+         * List calendar events. All filters optional. Returns ordered by fecha DESC.
+         * Input: persona_id (number, optional), desde (string, optional — fecha start), hasta (string, optional — fecha end).
          * Output: array of evento rows {id, persona_id, fecha, data, created_at}.
          */
         requireAuth(caller);
-        requireId(input, 'persona_id');
-        let q = db.select().from(evento).where(eq(evento.persona_id, input.persona_id));
-        if (input.desde) q = q.where(sql`${evento.fecha} >= ${input.desde}`);
-        if (input.hasta) q = q.where(sql`${evento.fecha} <= ${input.hasta}`);
-        return q;
+        const conditions = [];
+        if (input.persona_id) conditions.push(eq(evento.persona_id, input.persona_id));
+        if (input.desde) conditions.push(sql`${evento.fecha} >= ${input.desde}`);
+        if (input.hasta) conditions.push(sql`${evento.fecha} <= ${input.hasta}`);
+        let q = db.select().from(evento);
+        if (conditions.length) q = q.where(and(...conditions));
+        return q.orderBy(sql`${evento.fecha} DESC`);
     },
 
     createEvento: async function createEvento({ input, caller }) {
@@ -719,14 +763,14 @@ export const operations = {
 
     listAsistencia: async function listAsistencia({ input, caller }) {
         /**
-         * List attendance records for a person.
-         * Input: persona_id (number).
+         * List attendance records. All filters optional. Returns ordered by entrada DESC.
+         * Input: persona_id (number, optional).
          * Output: array of asistencia rows {id, persona_id, entrada, salida}.
          */
         requireAuth(caller);
-        requireId(input, 'persona_id');
-        return db.select().from(asistencia)
-            .where(eq(asistencia.persona_id, input.persona_id));
+        let q = db.select().from(asistencia);
+        if (input.persona_id) q = q.where(eq(asistencia.persona_id, input.persona_id));
+        return q.orderBy(sql`${asistencia.entrada} DESC`);
     },
 
     // ─── Auditoria ──────────────────────────────────────────────────────────
