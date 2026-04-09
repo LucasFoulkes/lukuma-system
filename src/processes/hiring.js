@@ -106,7 +106,7 @@ async function generateDocumentSet({ prefix, pdfHtml, formHtml }) {
     const qrBuffer = await QRCode.toBuffer(`${API_BASE}${formUrl}`);
     writeFileSync(new URL(`${prefix}_qr.png`, downloadsDir), qrBuffer);
 
-    return { pdf: pdfUrl, qr: qrUrl, form: formUrl };
+    return { pdf: `${API_BASE}${pdfUrl}`, qr: `${API_BASE}${qrUrl}`, form: `${API_BASE}${formUrl}` };
 }
 
 function outputUrls(prefix) {
@@ -127,7 +127,7 @@ export const hiring = {
          * Next: entrevista.
          * All input fields are optional — unfilled fields become blanks in the PDF and editable inputs in the form. Call with no inputs for a fully blank form, or pre-fill what you know.
          * Input: nombres (string, optional), apellidos (string, optional), cedula (number, optional), ciudad (string, optional), cargo_id (string, optional), unidad_id (string, optional).
-         * Output: {pdf: string, qr: string, form: string} — PDF download link, QR code image, and interactive form URL. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL (not downloaded).
+         * Output: {pdf: string, qr: string, form: string} — absolute URLs for the PDF, QR code image, and interactive form. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const { fecha, dia, mes, ano } = dateInfo();
@@ -166,7 +166,7 @@ export const hiring = {
          * Requires: consentimientoDeDatos. Next: datosPersonales.
          * Pre-fills nombres, apellidos, cedula, ciudad from the consentimiento. All other fields are collected during the interview. Two signatures: entrevistado and entrevistador (caller).
          * Input: documento_id (string, required — id of the consentimiento_de_datos documento), plus any optional fields to pre-fill.
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -224,7 +224,7 @@ export const hiring = {
          * Requires: entrevista. Next: actaEntrega.
          * Pre-fills identification and banking from entrevista. New fields collected: tallas, ruta de transporte, croquis de vivienda, firma del trabajador.
          * Input: documento_id (string, required — id of the entrevista documento), plus any optional fields to pre-fill.
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -270,7 +270,7 @@ export const hiring = {
          * Requires: datosPersonales. Next: cartaCompromiso.
          * Pre-fills worker data from previous documents. The checklist of documents is fixed. Two signatures: worker and Talento Humano (caller).
          * Input: documento_id (string, required — id of the datosPersonales documento).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -303,7 +303,7 @@ export const hiring = {
          * Requires: actaEntrega. Next: decimos.
          * Pre-fills worker data from previous documents. Content is fixed legal text. Two signatures: worker and Dep. Talento Humano (caller).
          * Input: documento_id (string, required — id of the actaEntrega documento).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -336,7 +336,7 @@ export const hiring = {
          * Requires: cartaCompromiso. Next: induccion.
          * Pre-fills worker data from previous documents. Worker chooses monthly vs accumulated for 13th and 14th salary. One signature: worker only.
          * Input: documento_id (string, required — id of the cartaCompromiso documento).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -376,7 +376,7 @@ export const hiring = {
          * Requires: decimos. Next: consentimientoEnrolamiento.
          * Pre-fills worker data from previous documents. Checklist of induction topics across 8 groups, observations fields, two signatures: worker and capacitador (caller).
          * Input: documento_id (string, required — id of the decimos documento), area_puesto (string, optional).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -416,7 +416,7 @@ export const hiring = {
          * Pre-fills worker data from previous documents. 32-item table of personal data and their legal purposes. Fixed legal text.
          * Two signatures: employer (representante legal) and worker.
          * Input: documento_id (string, required — id of the induccion documento).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -448,7 +448,7 @@ export const hiring = {
          * Pre-fills worker data. 6 multiple-choice questions about company policies, certifications, and safety. Auto-grades on submit.
          * Two signatures: evaluado (worker) and evaluador (caller).
          * Input: documento_id (string, required — id of the consentimientoEnrolamiento documento), area (string, optional).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -487,7 +487,7 @@ export const hiring = {
          * Pre-fills worker data. Mix of open-ended and multiple-choice technical questions about cultivation, sanitation, and fumigation.
          * Results section with observations and pass/fail. Three signatures: TTHH (caller), evaluado, and jefe de area/supervisor.
          * Input: documento_id (string, required — id of the evaluacionInduccion documento), cargo (string, optional).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
@@ -532,7 +532,7 @@ export const hiring = {
          * Pre-fills worker data. Questions on classification (diseases, pests, cut points, lira/tree), bonche, activities checklist, packing.
          * Results with observations and pass/fail. Three signatures: TTHH (caller), evaluado, jefe de area/supervisor.
          * Input: documento_id (string, required — id of the evaluacionCompetencias documento), cargo (string, optional).
-         * Output: {pdf: string, qr: string, form: string}. Always show the QR using ![qr]({API_BASE}{qr}). The form link must be opened via the server URL.
+         * Output: {pdf: string, qr: string, form: string}. All three fields (pdf, qr, form) are absolute URLs ready to use as-is. Show the QR using ![qr]({qr}) and the form as a clickable link to {form}.
          */
         await requireTalentoHumano(caller);
         const prev = await loadPrevDocument(input.documento_id);
